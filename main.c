@@ -4,12 +4,35 @@
 #include "stm32f4xx_tim.h"
 #include "stm32f4xx_exti.h"
 #include "stm32f4xx_syscfg.h"
+#include "stm32f4xx_usart.h"
 #include "misc.h"
 
 void init_gpio();
 void init_tim();
 void init_nvic();
 void init_usart();
+
+int c;
+
+void USART3_IRQHandler(void)
+{
+	if(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET)
+	{
+		c = USART3->DR;
+		printf(c);
+	}
+}
+
+void SendString(char *s)
+{
+	while(*s)
+	{
+		while(USART_GetFlagStatus(USART3,USART_FLAG_TXE) == RESET);
+		USART_SendData(USART3,*s);
+		//while(USART_GetFlagStatus(USART3,USART_FLAG_TC) == RESET);
+		s++;
+	}
+}
 
 void TIM3_IRQHandler(void)
 {
@@ -36,6 +59,8 @@ int main(void)
 	GPIO_SetBits(GPIOD, GPIO_Pin_12 | GPIO_Pin_14);
 	TIM_Cmd(TIM3,ENABLE);
 
+
+	SendString("AT");
 	for(;;)
 	{
 
