@@ -1,6 +1,5 @@
 # Coocox Project
 *.bin
-*.elf
 *.hex
 *.map
 *.xml
