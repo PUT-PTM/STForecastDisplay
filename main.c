@@ -5,7 +5,10 @@
 #include "stm32f4xx_syscfg.h"
 #include "stm32f4xx_usart.h"
 #include "misc.h"
-
+//#include "defines.h"
+//#include "stm32f4xx.h"
+#include "tm_stm32f4_delay.h"
+#include "tm_stm32f4_hd44780.h"
 void init_usart();
 
 char buffor[32];
@@ -42,8 +45,16 @@ int main(void)
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
 	SystemInit();
 
+	TM_HD44780_Init(16, 2);
 	init_usart();
 	SendString("AT\r\n");
+
+	 TM_HD44780_Puts(0, 0, "STM32F4");
+	 TM_HD44780_Puts(0, 1, "20x4 HD44780 LCD");
+	 Delayms(3000);
+	 TM_HD44780_Clear();
+	 TM_HD44780_Puts(0, 0, "Michal Gozdek");
+	 TM_HD44780_Puts(0, 1, "DominikKaczmarek");
 	while(1)
 	{
 
