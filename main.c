@@ -1,25 +1,27 @@
 #include "stm32f4xx_conf.h"
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_rcc.h"
-#include "stm32f4xx_tim.h"
 #include "stm32f4xx_exti.h"
 #include "stm32f4xx_syscfg.h"
 #include "stm32f4xx_usart.h"
 #include "misc.h"
 
-void init_gpio();
-void init_tim();
-void init_nvic();
 void init_usart();
 
-int c;
+char buffor[32];
+char *buf = &buffor;
+char *start = &buffor;
+int i = 0;
 
 void USART3_IRQHandler(void)
 {
 	if(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET)
 	{
-		c = USART3->DR;
-		printf(c);
+		if(USART3->DR != '\n' && USART3->DR != '\r'){
+			*buf = USART3->DR;
+			buf++;
+		}
+		if(USART3->DR == '\r') buf = start;
 	}
 }
 
@@ -29,21 +31,10 @@ void SendString(char *s)
 	{
 		while(USART_GetFlagStatus(USART3,USART_FLAG_TXE) == RESET);
 		USART_SendData(USART3,*s);
-		//while(USART_GetFlagStatus(USART3,USART_FLAG_TC) == RESET);
+		while (USART_GetFlagStatus(USART3, USART_FLAG_TC) == RESET);
 		s++;
 	}
-}
 
-void TIM3_IRQHandler(void)
-{
-         	if(TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
-         	{
-         		GPIO_ToggleBits(GPIOD, GPIO_Pin_12 | GPIO_Pin_14);
-         		GPIO_ToggleBits(GPIOD, GPIO_Pin_13 | GPIO_Pin_15);
-
-                // wyzerowanie flagi wyzwolonego przerwania
-                TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-         	}
 }
 
 int main(void)
@@ -51,58 +42,13 @@ int main(void)
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
 	SystemInit();
 
-	init_gpio();
-	init_tim();
-	init_nvic();
 	init_usart();
-
-	GPIO_SetBits(GPIOD, GPIO_Pin_12 | GPIO_Pin_14);
-	TIM_Cmd(TIM3,ENABLE);
-
-
-	SendString("AT");
-	for(;;)
+	SendString("AT\r\n");
+	while(1)
 	{
 
 	}
 
-}
-
-void init_gpio()
-{
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
-
-	GPIO_InitTypeDef  GPIO_InitStructure;
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13| GPIO_Pin_14| GPIO_Pin_15;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
-	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_Init(GPIOD, &GPIO_InitStructure);
-}
-
-void init_tim()
-{
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
-
-	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
-	TIM_TimeBaseStructure.TIM_Period = 8399;
-	TIM_TimeBaseStructure.TIM_Prescaler = 9999;
-	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;
-	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
-}
-
-void init_nvic()
-{
-	NVIC_InitTypeDef NVIC_InitStructure;
-	NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_Init(&NVIC_InitStructure);
-	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-	TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);
 }
 
 void init_usart(){

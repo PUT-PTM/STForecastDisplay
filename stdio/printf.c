@@ -17,6 +17,7 @@
  */
 void PrintChar(char c)
 {
+	SH_SendChar(c);
 	/* Send a char like: 
 	   while(Transfer not completed);
 	   Transmit a char;
