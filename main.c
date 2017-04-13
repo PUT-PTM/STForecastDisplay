@@ -11,23 +11,29 @@
 #include "tm_stm32f4_hd44780.h"
 void init_usart();
 
-char buffor[32];
+/* wifi ssid & password */
+const char ssid[6] = "test";
+const char pass[9] = "myesp8266";
+
+/* buffer pointers for debugging purpose */
+char buffor[5];
 char *buf = &buffor;
 char *start = &buffor;
-int i = 0;
 
+/* read from USART */
 void USART3_IRQHandler(void)
 {
 	if(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET)
 	{
-		if(USART3->DR != '\n' && USART3->DR != '\r'){
+		if(USART3->DR != '\r'){
 			*buf = USART3->DR;
 			buf++;
 		}
-		if(USART3->DR == '\r') buf = start;
+
 	}
 }
 
+/* send to USART */
 void SendString(char *s)
 {
 	while(*s)
@@ -40,21 +46,46 @@ void SendString(char *s)
 
 }
 
+char* ConnecttoWiFi(char *ssid, char *pass){
+
+	return "hello";
+}
+
 int main(void)
 {
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
 	SystemInit();
 
 	TM_HD44780_Init(16, 2);
-	init_usart();
-	SendString("AT\r\n");
+	Init_Usart();
 
-	 TM_HD44780_Puts(0, 0, "STM32F4");
-	 TM_HD44780_Puts(0, 1, "20x4 HD44780 LCD");
-	 Delayms(3000);
-	 TM_HD44780_Clear();
-	 TM_HD44780_Puts(0, 0, "Michal Gozdek");
-	 TM_HD44780_Puts(0, 1, "DominikKaczmarek");
+	SendString("AT+RST\r\n");
+	Delayms(2000);
+	printf(buffor);
+	buf = start;
+
+	SendString("AT+CWMODE=1\r\n");
+	Delayms(2000);
+	printf(buffor);
+	buf = start;
+
+	SendString("AT+CWJAP=\"networktes\",\"myesp8266\"\r\n");
+	Delayms(10000);
+	printf(buffor);
+	buf = start;
+
+	SendString("AT+CIFSR\r\n");
+	Delayms(5000);
+	printf(buffor);
+	buf = start;
+
+
+	TM_HD44780_Puts(0, 0, "STM32F4");
+	TM_HD44780_Puts(0, 1, "20x4 HD44780 LCD");
+	//Delayms(3000);
+	TM_HD44780_Clear();
+	TM_HD44780_Puts(0, 0, "Michal Gozdek");
+	TM_HD44780_Puts(0, 1, "DominikKaczmarek");
 	while(1)
 	{
 
@@ -62,7 +93,7 @@ int main(void)
 
 }
 
-void init_usart(){
+void Init_Usart(){
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
 
