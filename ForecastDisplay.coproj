@@ -108,8 +108,8 @@
     <File name="cmsis_lib/source/tm_stm32f4_gpio.c" path="cmsis_lib/source/tm_stm32f4_gpio.c" type="1"/>
     <File name="cmsis_lib/source/tm_stm32f4_timer_properties.c" path="cmsis_lib/source/tm_stm32f4_timer_properties.c" type="1"/>
     <File name="cmsis_lib/include/attributes.h" path="cmsis_lib/include/attributes.h" type="1"/>
-    <File name="cmsis" path="" type="2"/>
     <File name="cmsis_lib/include/tm_stm32f4_delay.h" path="cmsis_lib/include/tm_stm32f4_delay.h" type="1"/>
+    <File name="cmsis" path="" type="2"/>
     <File name="cmsis_lib/source/misc.c" path="cmsis_lib/source/misc.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_tim.h" path="cmsis_lib/include/stm32f4xx_tim.h" type="1"/>
     <File name="cmsis_lib" path="" type="2"/>
