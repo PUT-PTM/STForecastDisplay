@@ -4,8 +4,8 @@
 <window>
 <fastViewData fastViewLocation="1024">
 <orientation position="512" view="org.eclipse.debug.ui.ExpressionView"/>
-<orientation position="512" view="org.coocox.component.ui.ComponentView"/>
 <orientation position="512" view="org.coocox.builder.ui.views.ProjectView"/>
+<orientation position="512" view="org.coocox.component.ui.ComponentView"/>
 <orientation position="512" view="org.coocox.codebugger.trace.ui.traceview"/>
 <orientation position="512" view="org.eclipse.debug.ui.DebugView"/>
 <orientation position="512" view="org.eclipse.ui.console.ConsoleView"/>
@@ -27,7 +27,7 @@
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/Dominik/Documents/GitHub/STForecastDisplay/main.c" title="main.c" tooltip="C:/Users/Dominik/Documents/GitHub/STForecastDisplay/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ForecastDisplay/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="768" selectionTopPixel="612"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1446" selectionTopPixel="1037"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_delay.h" partName="tm_stm32f4_delay.h" path="C:/Users/Dominik/Documents/GitHub/STForecastDisplay/cmsis_lib/include/tm_stm32f4_delay.h" title="tm_stm32f4_delay.h" tooltip="C:/Users/Dominik/Documents/GitHub/STForecastDisplay/cmsis_lib/include/tm_stm32f4_delay.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ForecastDisplay/cmsis_lib/include/tm_stm32f4_delay.h"/>
@@ -193,8 +193,8 @@
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <hide_toolbar_item_id id="org.coocox.builder.ui.build"/>
 <hide_toolbar_item_id id="org.coocox.welcome.ui.action.welcome"/>
-<hide_toolbar_item_id id="org.coocox.codebugger.configuration.coideProgramDownloadAction"/>
 <hide_toolbar_item_id id="org.coocox.component.ui.ShowRepositoryAction"/>
+<hide_toolbar_item_id id="org.coocox.codebugger.configuration.coideProgramDownloadAction"/>
 <view id="org.coocox.codebugger.trace.ui.traceview"/>
 <view id="org.eclipse.debug.ui.VariableView"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
@@ -267,157 +267,156 @@
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ForecastDisplay/main.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ForecastDisplay/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ForecastDisplay/cmsis_lib/include/tm_stm32f4_delay.h"/>
 </editors>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1336" y="0"/>
+<position info="not_deleted" x="2090" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
+<position info="not_deleted" x="1446" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="484" y="0"/>
+<position info="not_deleted" x="2115" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
+<position info="not_deleted" x="1446" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1528" y="0"/>
+<position info="not_deleted" x="2110" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
+<position info="not_deleted" x="1446" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1758" y="0"/>
+<position info="not_deleted" x="2341" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
+<position info="not_deleted" x="1446" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1413" y="0"/>
+<position info="not_deleted" x="2115" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
+<position info="not_deleted" x="1446" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="484" y="0"/>
+<position info="not_deleted" x="2110" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1408" y="0"/>
+<position info="not_deleted" x="1446" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
+<position info="not_deleted" x="2290" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1448" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1483" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="484" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="599" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1408" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1127" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1490" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1296" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1192" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1277" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1277" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
+<position info="not_deleted" x="576" y="0"/>
 </item>
 <item historyLabel="startup_stm32f4xx.c" index="1">
 <position info="not_deleted" x="14795" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
+<position info="not_deleted" x="1446" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1277" y="0"/>
+<position info="not_deleted" x="2237" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
+<position info="not_deleted" x="2237" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1532" y="0"/>
+<position info="not_deleted" x="1446" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1508" y="0"/>
-</item>
-<item historyLabel="tm_stm32f4_delay.h" index="2">
-<position info="not_deleted" x="7936" y="0"/>
+<position info="not_deleted" x="2343" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1508" y="0"/>
+<position info="not_deleted" x="1446" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1301" y="0"/>
+<position info="not_deleted" x="2237" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
+<position info="not_deleted" x="1446" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="484" y="0"/>
+<position info="not_deleted" x="2237" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
+<position info="not_deleted" x="1446" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1251" y="0"/>
+<position info="not_deleted" x="2237" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
+<position info="not_deleted" x="1446" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="718" y="0"/>
+<position info="not_deleted" x="2305" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="1446" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2289" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="1446" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="1423" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position/>
+</item>
+<item historyLabel="main.c" index="0">
+<position/>
+</item>
+<item historyLabel="main.c" index="0">
+<position/>
+</item>
+<item historyLabel="main.c" index="0">
+<position/>
+</item>
+<item historyLabel="main.c" index="0">
+<position/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="1402" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="1446" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2330" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="1446" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2290" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="1446" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2256" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="1446" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2328" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="1446" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="2341" y="0"/>
 </item>
 <item active="true" historyLabel="main.c" index="0">
-<position info="not_deleted" x="1061" y="0"/>
+<position info="not_deleted" x="1446" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -426,14 +425,14 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f4xx.c" tooltip="ForecastDisplay/cmsis_boot/startup/startup_stm32f4xx.c">
+<persistable path="/ForecastDisplay/cmsis_boot/startup/startup_stm32f4xx.c"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_delay.h" tooltip="ForecastDisplay/cmsis_lib/include/tm_stm32f4_delay.h">
 <persistable path="/ForecastDisplay/cmsis_lib/include/tm_stm32f4_delay.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_usart.h" tooltip="ForecastDisplay/cmsis_lib/include/stm32f4xx_usart.h">
 <persistable path="/ForecastDisplay/cmsis_lib/include/stm32f4xx_usart.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f4xx.c" tooltip="ForecastDisplay/cmsis_boot/startup/startup_stm32f4xx.c">
-<persistable path="/ForecastDisplay/cmsis_boot/startup/startup_stm32f4xx.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="printf.c" tooltip="ForecastDisplay/stdio/printf.c">
 <persistable path="/ForecastDisplay/stdio/printf.c"/>

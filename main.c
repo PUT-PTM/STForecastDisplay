@@ -1,3 +1,11 @@
+/* ESP inputs */
+//	---------------------------
+// |TX 	> C11	|GND	> GND  |
+// |CH 	> 3V	|GPIO2	> Null |
+// |RST > 3V	|GPIO0	> Null |
+// |Vcc > 3v	|RX		> C10  |
+//	---------------------------
+
 #include "stm32f4xx_conf.h"
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_rcc.h"
@@ -11,14 +19,19 @@
 #include "tm_stm32f4_hd44780.h"
 void init_usart();
 
+//const int msg 512;
+char getPoznan[89] = ">GET http://api.wunderground.com/api/3d8b02539ee9b6a0/conditions/q/EPPO.json HTTP/1.1\r\n";
+//3d8b02539ee9b6a0
+
 /* wifi ssid & password */
 const char ssid[6] = "test";
 const char pass[9] = "myesp8266";
 
 /* buffer pointers for debugging purpose */
-char buffor[5];
+char buffor[64];
 char *buf = &buffor;
 char *start = &buffor;
+//char msgbuffer[msg];
 
 /* read from USART */
 void USART3_IRQHandler(void)
@@ -59,26 +72,44 @@ int main(void)
 	TM_HD44780_Init(16, 2);
 	Init_Usart();
 
+	// esp reset command
 	SendString("AT+RST\r\n");
 	Delayms(2000);
 	printf(buffor);
 	buf = start;
 
+	// esp client mode enabled
 	SendString("AT+CWMODE=1\r\n");
 	Delayms(2000);
 	printf(buffor);
 	buf = start;
 
+	// connecting esp to network
 	SendString("AT+CWJAP=\"networktes\",\"myesp8266\"\r\n");
 	Delayms(10000);
 	printf(buffor);
 	buf = start;
 
-	SendString("AT+CIFSR\r\n");
+	// get local IP adress
+	/*SendString("AT+CIFSR\r\n");
 	Delayms(5000);
 	printf(buffor);
 	buf = start;
+	*/
 
+	// connect to wunderground.com
+	SendString("AT+CIPSTART=\"TCP\",\"google.com\",80\r\n");
+	Delayms(10000);
+	printf(buffor);
+	buf=start;
+
+	// close connection with site
+	SendString("AT+CIPSEND=18\r\n");
+	Delayms(500);
+	SendString("GET / HTTP/1.0\r\n");
+	Delayms(10000);
+	printf(buffor);
+	buf=start;
 
 	TM_HD44780_Puts(0, 0, "STM32F4");
 	TM_HD44780_Puts(0, 1, "20x4 HD44780 LCD");
