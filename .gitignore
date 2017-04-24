@@ -33,3 +33,5 @@
 *.exe
 *.out
 *.app
+*.elf
+ForecastDisplay/ForecastDisplay.elf.xcodeproj/project.pbxproj
