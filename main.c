@@ -20,7 +20,7 @@
 void init_usart();
 
 //const int msg 512;
-char getPoznan[89] = ">GET http://api.wunderground.com/api/3d8b02539ee9b6a0/conditions/q/EPPO.json HTTP/1.1\r\n";
+char getPoznan[89] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPPO.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
 //3d8b02539ee9b6a0
 
 /* wifi ssid & password */
@@ -28,10 +28,9 @@ const char ssid[6] = "test";
 const char pass[9] = "myesp8266";
 
 /* buffer pointers for debugging purpose */
-char buffor[64];
-char *buf = &buffor;
-char *start = &buffor;
+char buffor[2048];
 int count = 0;
+int flag = 1;
 //char msgbuffer[msg];
 
 /* read from USART */
@@ -39,11 +38,10 @@ void USART3_IRQHandler(void)
 {
 	if(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET)
 	{
-		if(USART3->DR != '\r'){
+		if(USART3->DR != '/r'){
 			buffor[count] = USART3->DR;
 			count++;
 		}
-
 	}
 }
 
@@ -60,13 +58,11 @@ void SendString(char *s)
 
 }
 
-void CleanBuff(char buff)
+void CleanBuff()
 {
 	int i;
-	char *temp = &buff;
-	for(i=0; i<64; i++){
-		*temp = 'a';
-		temp++;
+	for(i=0; i<count; i++){
+		buffor[i] = ' ';
 	}
 	count = 0;
 }
@@ -78,48 +74,49 @@ int main(void)
 
 	TM_HD44780_Init(16, 2);
 	Init_Usart();
+	int i;
+	for(i=0;i<1400;i++){
+		buffor[i]=0;
+	}
 
-	// esp client mode enabled
+	// esp client+AP mode enabled
 	SendString("AT+CWMODE=3\r\n");
 	Delayms(1000);
-	printf(buffor);
-	CleanBuff(&buffor);
 
 	// esp reset command
 	SendString("AT+RST\r\n");
 	Delayms(1000);
-	printf(buffor);
-	CleanBuff(&buffor);
+
+	// disable echo
+	SendString("ATE0\r\n");
+	Delayms(1000);
 
 	// connecting esp to network
 	SendString("AT+CWJAP=\"networktes\",\"myesp8266\"\r\n");
-	Delayms(5000);
-	printf(buffor);
-	CleanBuff(&buffor);
+	Delayms(7500);
 
 	// connect to wunderground.com
-	SendString("AT+CIPSTART=\"TCP\",\"www.api.wunderground.com\",80\r\n");
-	Delayms(10000);
-	printf(buffor);
-	CleanBuff(&buffor);
-
-	// close connection with site
-	SendString("AT+CIPSEND=63 >GET /api/3d8b02539ee9b6a0/conditions/q/EPPO.json");
-	Delayms(3000);
-	printf(buffor);
-	CleanBuff(&buffor);
-
-	SendString("+IPD,100:\r\n");
+	SendString("AT+CIPSTART=\"TCP\",\"api.wunderground.com\",80\r\n");
 	Delayms(5000);
-	printf(buffor);
-	CleanBuff(&buffor);
 
-	TM_HD44780_Puts(0, 0, "STM32F4");
-	TM_HD44780_Puts(0, 1, "20x4 HD44780 LCD");
+	CleanBuff();
+
+	SendString("AT+CIPSEND=93\r\n");
+	Delayms(1000);
+	SendString("GET /api/3d8b02539ee9b6a0/conditions/q/EPPO.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n");
+	Delayms(2500);
+	SendString("+IPD,150:\r\n");
+	Delayms(10000);
+	//CleanBuff(&buffor);
+
+
+	//TM_HD44780_Puts(0, 0, "STM32F4");
+	//TM_HD44780_Puts(0, 1, "20x4 HD44780 LCD");
 	//Delayms(3000);
-	TM_HD44780_Clear();
-	TM_HD44780_Puts(0, 0, "Michal Gozdek");
-	TM_HD44780_Puts(0, 1, "DominikKaczmarek");
+	//TM_HD44780_Clear();
+	//TM_HD44780_Puts(0, 0, "Michal Gozdek");
+	//TM_HD44780_Puts(0, 1, "DominikKaczmarek");
+
 
 	while(1)
 	{
