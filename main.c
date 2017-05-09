@@ -8,22 +8,21 @@
 #include "misc.h"
 #include "tm_stm32f4_delay.h"
 #include "tm_stm32f4_hd44780.h"
-<<<<<<< HEAD
 
-void init_usart();
 
-char napis[16]="Warszawa";
-char buffor[32];
-char *buf = &buffor;
-char *start = &buffor;
-int button1=0, button2=0;
-=======
 #include "esp8266_commands.h"
 void init_usart();
 
+char napis[16]="Warszawa";
+int button1=0, button2=0;
+
 /* http get calls */
 char getPoznan[94] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPPO.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
->>>>>>> refs/remotes/origin/master
+
+
+
+
+
 
 /* wifi ssid & password */
 const char ssid[6] = "test";
@@ -52,7 +51,7 @@ void USART3_IRQHandler(void)
 	}
 }
 
-<<<<<<< HEAD
+
 void EXTI1_IRQHandler(void)
 {
          	if(EXTI_GetITStatus(EXTI_Line1) != RESET)
@@ -139,9 +138,9 @@ void TIM3_IRQHandler(void)
 				}
 
 
-=======
+
 /* send to USART */
->>>>>>> refs/remotes/origin/master
+
 void SendString(char *s)
 {
 	while(*s)
@@ -161,12 +160,11 @@ int main(void)
 	SystemInit();
 
 	TM_HD44780_Init(16, 2);
-<<<<<<< HEAD
-	init_usart();
-	init_EXTI();
-	SendString("AT\r\n");
 
-=======
+	init_EXTI();
+
+
+
 	Init_Usart();
 	int i;
 	for(i=0;i<4096;i++){
@@ -193,7 +191,7 @@ int main(void)
 	//TM_HD44780_Clear();
 	//TM_HD44780_Puts(0, 0, "Michal Gozdek");
 	//TM_HD44780_Puts(0, 1, "DominikKaczmarek");
->>>>>>> refs/remotes/origin/master
+
 
 	while(1)
 	{
