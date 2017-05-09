@@ -13,25 +13,27 @@
 #include "stm32f4xx_syscfg.h"
 #include "stm32f4xx_usart.h"
 #include "misc.h"
-//#include "defines.h"
-//#include "stm32f4xx.h"
 #include "tm_stm32f4_delay.h"
 #include "tm_stm32f4_hd44780.h"
 void init_usart();
 
-//const int msg 512;
-char getPoznan[89] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPPO.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
-//3d8b02539ee9b6a0
+/* http get calls */
+char getPoznan[94] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPPO.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
 
 /* wifi ssid & password */
 const char ssid[6] = "test";
 const char pass[9] = "myesp8266";
 
-/* buffer pointers for debugging purpose */
+/* buffer[count] to store get output */
 char buffor[4096];
 int count = 0;
-int flag = 1;
-//char msgbuffer[msg];
+
+/* containers for weather info */
+char temperature[4];
+char overview[15];
+char humidity[4];
+char wind_kph[3];
+char pressure[5];
 
 /* read from USART */
 void USART3_IRQHandler(void)
@@ -71,7 +73,7 @@ void cleanBuff()
 /* find toFind scheme and its value */
 char *parseJson(char *toFind)
 {
-	char result[10] = { 0 };
+	char result[32] = { 0 };
 	char *temp = toFind;
 	int i,k = 0;
 	int toFindLength = strlen(toFind);
@@ -82,11 +84,14 @@ char *parseJson(char *toFind)
 			temp++;
 			k++;
 			if(k == toFindLength){
-				i += 4;
+				i += 3;
 				k = 0;
-				while(buffor[i] != '\"'){
-					result[k] = buffor[i];
-					k++;
+				while(buffor[i] != ','){
+					if(buffor[i] != '\"')
+					{
+						result[k] = buffor[i];
+						k++;
+					}
 					i++;
 				}
 				temp = &result;
@@ -98,7 +103,6 @@ char *parseJson(char *toFind)
 			k = 0;
 		}
 	}
-
 	return "NULL";
 }
 
@@ -144,8 +148,12 @@ int main(void)
 	Delayms(3000);
 	//CleanBuff(&buffor);
 
-	char smth[10];
-	strncpy(smth, parseJson("country"), 10);
+	strncpy(overview, parseJson("\"weather"), 15);
+	strncpy(temperature, parseJson("temp_c"), 4);
+	strncpy(humidity, parseJson("relative_humidity"), 4);
+	strncpy(wind_kph, parseJson("wind_kph"), 3);
+	strncpy(pressure, parseJson("pressure_mb"), 5);
+
 
 	//TM_HD44780_Puts(0, 0, "STM32F4");
 	//TM_HD44780_Puts(0, 1, "20x4 HD44780 LCD");
