@@ -6,10 +6,9 @@
 #include "stm32f4xx_syscfg.h"
 #include "stm32f4xx_usart.h"
 #include "misc.h"
-//#include "defines.h"
-//#include "stm32f4xx.h"
 #include "tm_stm32f4_delay.h"
 #include "tm_stm32f4_hd44780.h"
+<<<<<<< HEAD
 
 void init_usart();
 
@@ -18,19 +17,42 @@ char buffor[32];
 char *buf = &buffor;
 char *start = &buffor;
 int button1=0, button2=0;
+=======
+#include "esp8266_commands.h"
+void init_usart();
 
+/* http get calls */
+char getPoznan[94] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPPO.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
+>>>>>>> refs/remotes/origin/master
+
+/* wifi ssid & password */
+const char ssid[6] = "test";
+const char pass[9] = "myesp8266";
+
+/* buffer[count] to store get output */
+char buffor[4096];
+int count = 0;
+
+/* containers for weather info */
+char temperature[4];
+char overview[15];
+char humidity[4];
+char wind_kph[3];
+char pressure[5];
+
+/* read from USART */
 void USART3_IRQHandler(void)
 {
 	if(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET)
 	{
-		if(USART3->DR != '\n' && USART3->DR != '\r'){
-			*buf = USART3->DR;
-			buf++;
+		if(USART3->DR != '/r'){
+			buffor[count] = USART3->DR;
+			count++;
 		}
-		if(USART3->DR == '\r') buf = start;
 	}
 }
 
+<<<<<<< HEAD
 void EXTI1_IRQHandler(void)
 {
          	if(EXTI_GetITStatus(EXTI_Line1) != RESET)
@@ -117,6 +139,9 @@ void TIM3_IRQHandler(void)
 				}
 
 
+=======
+/* send to USART */
+>>>>>>> refs/remotes/origin/master
 void SendString(char *s)
 {
 	while(*s)
@@ -136,10 +161,39 @@ int main(void)
 	SystemInit();
 
 	TM_HD44780_Init(16, 2);
+<<<<<<< HEAD
 	init_usart();
 	init_EXTI();
 	SendString("AT\r\n");
 
+=======
+	Init_Usart();
+	int i;
+	for(i=0;i<4096;i++){
+		buffor[i]=0;
+	}
+
+	initAT();
+	initNetwork();
+	cleanBuff();
+	getHTTP();
+
+	//CleanBuff(&buffor);
+
+	strncpy(overview, parseJson("\"weather"), 15);
+	strncpy(temperature, parseJson("temp_c"), 4);
+	strncpy(humidity, parseJson("relative_humidity"), 4);
+	strncpy(wind_kph, parseJson("wind_kph"), 3);
+	strncpy(pressure, parseJson("pressure_mb"), 5);
+
+
+	//TM_HD44780_Puts(0, 0, "STM32F4");
+	//TM_HD44780_Puts(0, 1, "20x4 HD44780 LCD");
+	//Delayms(3000);
+	//TM_HD44780_Clear();
+	//TM_HD44780_Puts(0, 0, "Michal Gozdek");
+	//TM_HD44780_Puts(0, 1, "DominikKaczmarek");
+>>>>>>> refs/remotes/origin/master
 
 	while(1)
 	{
@@ -148,7 +202,7 @@ int main(void)
 
 }
 
-void init_usart(){
+void Init_Usart(){
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
 
