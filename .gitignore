@@ -3,6 +3,8 @@
 *.hex
 *.map
 *.xml
+*.elf
+*.pbxproj
 
 # Compiled Object files
 *.slo
