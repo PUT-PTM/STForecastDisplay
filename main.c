@@ -28,7 +28,7 @@ const char ssid[6] = "test";
 const char pass[9] = "myesp8266";
 
 /* buffer pointers for debugging purpose */
-char buffor[2048];
+char buffor[4096];
 int count = 0;
 int flag = 1;
 //char msgbuffer[msg];
@@ -58,13 +58,48 @@ void SendString(char *s)
 
 }
 
-void CleanBuff()
+/* clear buffer */
+void cleanBuff()
 {
 	int i;
 	for(i=0; i<count; i++){
 		buffor[i] = ' ';
 	}
 	count = 0;
+}
+
+/* find toFind scheme and its value */
+char *parseJson(char *toFind)
+{
+	char result[10] = { 0 };
+	char *temp = toFind;
+	int i,k = 0;
+	int toFindLength = strlen(toFind);
+
+	for(i=0; i<count; i++)
+	{
+		if(buffor[i] == *temp){
+			temp++;
+			k++;
+			if(k == toFindLength){
+				i += 4;
+				k = 0;
+				while(buffor[i] != '\"'){
+					result[k] = buffor[i];
+					k++;
+					i++;
+				}
+				temp = &result;
+				return temp;
+			}
+		}
+		else{
+			temp = toFind;
+			k = 0;
+		}
+	}
+
+	return "NULL";
 }
 
 int main(void)
@@ -75,7 +110,7 @@ int main(void)
 	TM_HD44780_Init(16, 2);
 	Init_Usart();
 	int i;
-	for(i=0;i<1400;i++){
+	for(i=0;i<4096;i++){
 		buffor[i]=0;
 	}
 
@@ -93,22 +128,24 @@ int main(void)
 
 	// connecting esp to network
 	SendString("AT+CWJAP=\"networktes\",\"myesp8266\"\r\n");
-	Delayms(7500);
+	Delayms(5000);
 
 	// connect to wunderground.com
 	SendString("AT+CIPSTART=\"TCP\",\"api.wunderground.com\",80\r\n");
 	Delayms(5000);
 
-	CleanBuff();
+	cleanBuff();
 
 	SendString("AT+CIPSEND=93\r\n");
 	Delayms(1000);
 	SendString("GET /api/3d8b02539ee9b6a0/conditions/q/EPPO.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n");
-	Delayms(2500);
+	Delayms(6000);
 	SendString("+IPD,150:\r\n");
-	Delayms(10000);
+	Delayms(3000);
 	//CleanBuff(&buffor);
 
+	char smth[10];
+	strncpy(smth, parseJson("country"), 10);
 
 	//TM_HD44780_Puts(0, 0, "STM32F4");
 	//TM_HD44780_Puts(0, 1, "20x4 HD44780 LCD");
@@ -116,7 +153,6 @@ int main(void)
 	//TM_HD44780_Clear();
 	//TM_HD44780_Puts(0, 0, "Michal Gozdek");
 	//TM_HD44780_Puts(0, 1, "DominikKaczmarek");
-
 
 	while(1)
 	{
