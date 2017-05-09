@@ -106,6 +106,7 @@
     <File name="semihosting/semihosting.c" path="semihosting/semihosting.c" type="1"/>
     <File name="cmsis_lib/source/tm_stm32f4_delay.c" path="cmsis_lib/source/tm_stm32f4_delay.c" type="1"/>
     <File name="cmsis_lib/source/tm_stm32f4_gpio.c" path="cmsis_lib/source/tm_stm32f4_gpio.c" type="1"/>
+    <File name="esp8266_commands.c" path="esp8266_commands.c" type="1"/>
     <File name="cmsis_lib/source/tm_stm32f4_timer_properties.c" path="cmsis_lib/source/tm_stm32f4_timer_properties.c" type="1"/>
     <File name="cmsis_lib/include/tm_stm32f4_delay.h" path="cmsis_lib/include/tm_stm32f4_delay.h" type="1"/>
     <File name="cmsis" path="" type="2"/>
@@ -114,6 +115,7 @@
     <File name="cmsis_lib/include/stm32f4xx_tim.h" path="cmsis_lib/include/stm32f4xx_tim.h" type="1"/>
     <File name="cmsis_lib" path="" type="2"/>
     <File name="cmsis_lib/source" path="" type="2"/>
+    <File name="esp8266_commands.h" path="esp8266_commands.h" type="1"/>
     <File name="cmsis_lib/include/tm_stm32f4_timer_properties.h" path="cmsis_lib/include/tm_stm32f4_timer_properties.h" type="1"/>
     <File name="cmsis_lib/include/tm_stm32f4_hd44780.h" path="cmsis_lib/include/tm_stm32f4_hd44780.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_tim.c" path="cmsis_lib/source/stm32f4xx_tim.c" type="1"/>
