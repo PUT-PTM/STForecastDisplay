@@ -17,7 +17,7 @@ char napis[16]="Warszawa";
 char buffor[32];
 char *buf = &buffor;
 char *start = &buffor;
-int i = 0, j=0, k=0;
+int  button1=0, button2=0;
 
 void USART3_IRQHandler(void)
 {
@@ -43,29 +43,29 @@ void EXTI1_IRQHandler(void)
 void TIM4_IRQHandler(void)
 				{
 				         if(TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET){
-				        		if(j==0&&k==0){
+				        		if(button1==0&&button2==0){
 				        	         TM_HD44780_Clear();
 				        	         TM_HD44780_Puts(0, 0, "Poznan");
 				        	         TM_HD44780_Puts(0, 1, "Michal Gozdek");
-				        	         j++;
+				        	         button1++;
 				        	        }
-				        	     else if(j==1&&k==0){
+				        	     else if(button1==1&&button2==0){
 				        	          TM_HD44780_Clear();
 				        	          TM_HD44780_Puts(0, 0, napis);
 				        	          TM_HD44780_Puts(0, 1, "Michal Gozdek");
-				        	          j--;
+				        	          button1--;
 				        	         }
-				        	     else if(j==0&&k==1){
+				        	     else if(button1==0&&button2==1){
 				        	     		TM_HD44780_Clear();
 				        	     		TM_HD44780_Puts(0, 0, "Poznan");
 				        	     		TM_HD44780_Puts(0, 1, "Dominik Kaczmare");
-				        	     		j++;
+				        	     		button1++;
 				        	     	}
-				        	     else if(j==1&&k==1){
+				        	     else if(button1==1&&button2==1){
 				        	     		TM_HD44780_Clear();
 				        	     		TM_HD44780_Puts(0, 0, napis);
 				        	     		TM_HD44780_Puts(0, 1, "Dominik Kaczmare");
-				        	     		j--;
+				        	     		button1--;
 				        	     }
 				        	          TIM_Cmd(TIM4, DISABLE);
 				        	          TIM_SetCounter(TIM4, 0);
@@ -86,29 +86,29 @@ void EXTI2_IRQHandler(void)
 void TIM3_IRQHandler(void)
 				{
 				         if(TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET){
-				     		if(j==0&&k==0){
+				     		if(button1==0&&button2==0){
 				     			TM_HD44780_Clear();
 				     			TM_HD44780_Puts(0, 0, "Poznan");
 				     			TM_HD44780_Puts(0, 1, "Michal Gozdek");
-				     			k++;
+				     			button2++;
 				     		}
-				     		else if(j==1&&k==0){
+				     		else if(button1==1&&button2==0){
 				     			TM_HD44780_Clear();
 				     			TM_HD44780_Puts(0, 0, napis);
 				     			TM_HD44780_Puts(0, 1, "Michal Gozdek");
-				     			k++;
+				     			button2++;
 				     		 }
-				     		else if(j==0&&k==1){
+				     		else if(button1==0&&button2==1){
 				     			TM_HD44780_Clear();
 				     			TM_HD44780_Puts(0, 0, "Poznan");
 				     			TM_HD44780_Puts(0, 1, "Dominik Kaczmare");
-				     			k--;
+				     			button2--;
 				     		}
-				     		else if(j==1&&k==1){
+				     		else if(button1==1&&button2==1){
 				     			TM_HD44780_Clear();
 				     			TM_HD44780_Puts(0, 0, napis);
 				     			TM_HD44780_Puts(0, 1, "Dominik Kaczmare");
-				     			k--;
+				     			button2--;
 				     		}
 				        	          TIM_Cmd(TIM3, DISABLE);
 				        	          TIM_SetCounter(TIM3, 0);
