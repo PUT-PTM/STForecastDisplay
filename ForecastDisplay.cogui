@@ -4,8 +4,8 @@
 <window>
 <fastViewData fastViewLocation="1024">
 <orientation position="512" view="org.eclipse.debug.ui.ExpressionView"/>
-<orientation position="512" view="org.coocox.component.ui.ComponentView"/>
 <orientation position="512" view="org.coocox.builder.ui.views.ProjectView"/>
+<orientation position="512" view="org.coocox.component.ui.ComponentView"/>
 <orientation position="512" view="org.coocox.codebugger.trace.ui.traceview"/>
 <orientation position="512" view="org.eclipse.debug.ui.DebugView"/>
 <orientation position="512" view="org.eclipse.ui.console.ConsoleView"/>
@@ -27,7 +27,7 @@
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/CooCox/CoIDE/workspace/GitHub/STForecastDisplay/main.c" title="main.c" tooltip="C:/CooCox/CoIDE/workspace/GitHub/STForecastDisplay/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ForecastDisplay/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="8864" selectionTopPixel="4388"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2745" selectionTopPixel="1469"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f4xx.c" partName="startup_stm32f4xx.c" path="C:/Users/Dominik/Documents/GitHub/STForecastDisplay/cmsis_boot/startup/startup_stm32f4xx.c" title="startup_stm32f4xx.c" tooltip="C:/Users/Dominik/Documents/GitHub/STForecastDisplay/cmsis_boot/startup/startup_stm32f4xx.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ForecastDisplay/cmsis_boot/startup/startup_stm32f4xx.c"/>
@@ -258,12 +258,6 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ForecastDisplay/cmsis_boot/startup/startup_stm32f4xx.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ForecastDisplay/cmsis_lib/source/stm32f4xx_usart.c"/>
 </editors>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="766" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="515" y="0"/>
-</item>
 <item historyLabel="Repository" index="1"/>
 <item historyLabel="Configuration" index="2"/>
 <item historyLabel="Repository" index="1"/>
@@ -397,8 +391,14 @@
 <item historyLabel="main.c" index="0">
 <position info="not_deleted" x="766" y="0"/>
 </item>
-<item active="true" historyLabel="main.c" index="0">
+<item historyLabel="main.c" index="0">
 <position info="not_deleted" x="891" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="1297" y="7"/>
+</item>
+<item active="true" historyLabel="main.c" index="0">
+<position info="not_deleted" x="464" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -407,6 +407,9 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="ForecastDisplay/main.c">
+<persistable path="/ForecastDisplay/main.c"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_rcc.c" tooltip="ForecastDisplay/cmsis_lib/source/stm32f4xx_rcc.c">
 <persistable path="/ForecastDisplay/cmsis_lib/source/stm32f4xx_rcc.c"/>
 </file>
@@ -446,9 +449,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f4xx.c" tooltip="[CoIDE]_USB_CDC_Example/cmsis_boot/startup/startup_stm32f4xx.c">
 <persistable path="/[CoIDE]_USB_CDC_Example/cmsis_boot/startup/startup_stm32f4xx.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="[CoIDE]_USB_CDC_Example/main.c">
-<persistable path="/[CoIDE]_USB_CDC_Example/main.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f4xx.c" tooltip="lab1-2/cmsis_boot/startup/startup_stm32f4xx.c">
 <persistable path="/lab1-2/cmsis_boot/startup/startup_stm32f4xx.c"/>
