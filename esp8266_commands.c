@@ -52,7 +52,7 @@ void initAT()
 {
 	// esp client+AP mode enabled
 	SendString("AT+CWMODE=3\r\n");
-	Delayms(1000);
+	Delayms(500);
 
 	// esp reset command
 	SendString("AT+RST\r\n");
@@ -60,7 +60,8 @@ void initAT()
 
 	// disable echo
 	SendString("ATE0\r\n");
-	Delayms(1000);
+	Delayms(500);
+
 }
 
 /* configure network */
@@ -73,6 +74,7 @@ void initNetwork()
 	// connect to wunderground.com
 	SendString("AT+CIPSTART=\"TCP\",\"api.wunderground.com\",80\r\n");
 	Delayms(5000);
+
 }
 
 /* send http get request */

@@ -17,11 +17,6 @@ int button1=0, button2=0;
 /* http get calls */
 char getPoznan[94] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPPO.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
 
-
-
-
-
-
 /* wifi ssid & password */
 const char ssid[6] = "test";
 const char pass[9] = "myesp8266";
@@ -356,8 +351,6 @@ int main(void)
 	initNetwork();
 	cleanBuff();
 	getHTTP();
-
-	//CleanBuff(&buffor);
 
 	strncpy(overviewPO, parseJson("\"weather"), 15);
 	strncpy(temperaturePO, parseJson("temp_c"), 4);

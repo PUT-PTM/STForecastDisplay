@@ -6,15 +6,29 @@
 // |Vcc > 3v	|RX		> C10  |
 //	---------------------------
 
+/* buffer[count] to store get output */
 extern char buffor[4096];
 extern count;
 
 /* containers for weather info */
-extern char temperature[4];
-extern char overview[15];
-extern char humidity[4];
-extern char wind_kph[3];
-extern char pressure[5];
+extern char temperaturePO[4];
+extern char overviewPO[15];
+extern char humidityPO[4];
+extern char wind_kphPO[3];
+extern char pressurePO[5];
+
+extern char temperatureWA[4];
+extern char overviewWA[15];
+extern char humidityWA[4];
+extern char wind_kphWA[3];
+extern char pressureWA[5];
+
+extern char temperatureKK[4];
+extern char overviewKK[15];
+extern char humidityKK[4];
+extern char wind_kphKK[3];
+extern char pressureKK[5];
+
 
 /* find toFind scheme and its value */
 /* input: 	array of chars
