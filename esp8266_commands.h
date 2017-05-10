@@ -40,6 +40,9 @@ extern char pressureKK[5];
 /* clear buffer */
 	void cleanBuff();
 
+/* find OK in buffor */
+	int findOK();
+
 /* send AT command */
 	int sendCommand(char *command);
 

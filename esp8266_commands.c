@@ -47,13 +47,27 @@ void cleanBuff()
 	count = 0;
 }
 
+/* find OK in buffor */
+int findOK()
+{
+	int i;
+	for(i = 0; i<count; i++)
+	{
+		if(buffor[i] == 'O'){
+			if(buffor[i+1] == 'K') return 1;
+		}
+	}
+	return -1;
+}
+
 /* send AT command */
 int sendCommand(char *command)
 {
 	cleanBuff();
 	int wait = 250;
 	SendString(command);
-	while((buffor[2] != 'O') && (buffor[3] != 'K')){
+	Delayms(500);
+	while(findOK() != 1){
 		Delayms(wait);
 		wait += 250;
 		if(wait > 10000) return -1;
@@ -73,6 +87,7 @@ void initAT()
 
 	// esp reset command
 	sendCommand("AT+RST\r\n");
+
 }
 
 /* configure network */
@@ -90,12 +105,13 @@ void initNetwork()
 int getHTTP(char *getRequest)
 {
 	/* send request */
-	SendString("AT+CIPSEND=93\r\n");
-	Delayms(1000);
+	SendString("AT+CIPSEND=89\r\n");
+	Delayms(3000);
 	SendString(getRequest);
 	Delayms(6000);
 	SendString("+IPD,150:\r\n");
-	Delayms(5000);
+	Delayms(3000);
+
 	if(count < 3000) return -1;
 	else return 1;
 }
