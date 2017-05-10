@@ -40,6 +40,9 @@ extern char pressureKK[5];
 /* clear buffer */
 	void cleanBuff();
 
+/* send AT command */
+	int sendCommand(char *command);
+
 /* init esp8266 */
 	void initAT();
 
@@ -47,4 +50,4 @@ extern char pressureKK[5];
 	void initNetwork();
 
 /* send http get request */
-	void getHTTP();
+	int getHTTP(char *getRequest);

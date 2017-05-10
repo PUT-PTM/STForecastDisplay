@@ -16,6 +16,8 @@ int button1=0, button2=0;
 
 /* http get calls */
 char getPoznan[94] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPPO.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
+char getWarszawa[94] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPWA.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
+char getKrakow[94] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPKK.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
 
 /* wifi ssid & password */
 const char ssid[6] = "test";
@@ -331,17 +333,12 @@ void SendString(char *s)
 
 int main(void)
 {
-
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
 	SystemInit();
-
 	TM_HD44780_Init(16, 2);
-
 	init_EXTI();
-
-
-
 	Init_Usart();
+
 	int i;
 	for(i=0;i<4096;i++){
 		buffor[i]=0;
@@ -350,13 +347,31 @@ int main(void)
 	initAT();
 	initNetwork();
 	cleanBuff();
-	getHTTP();
 
+	getHTTP(getPoznan);
 	strncpy(overviewPO, parseJson("\"weather"), 15);
 	strncpy(temperaturePO, parseJson("temp_c"), 4);
 	strncpy(humidityPO, parseJson("relative_humidity"), 4);
 	strncpy(wind_kphPO, parseJson("wind_kph"), 3);
 	strncpy(pressurePO, parseJson("pressure_mb"), 5);
+
+	cleanBuff();
+
+	getHTTP(getWarszawa);
+	strncpy(overviewWA, parseJson("\"weather"), 15);
+	strncpy(temperatureWA, parseJson("temp_c"), 4);
+	strncpy(humidityWA, parseJson("relative_humidity"), 4);
+	strncpy(wind_kphWA, parseJson("wind_kph"), 3);
+	strncpy(pressureWA, parseJson("pressure_mb"), 5);
+
+	cleanBuff();
+
+	getHTTP(getKrakow);
+	strncpy(overviewKK, parseJson("\"weather"), 15);
+	strncpy(temperatureKK, parseJson("temp_c"), 4);
+	strncpy(humidityKK, parseJson("relative_humidity"), 4);
+	strncpy(wind_kphKK, parseJson("wind_kph"), 3);
+	strncpy(pressureKK, parseJson("pressure_mb"), 5);
 
 
 	//TM_HD44780_Puts(0, 0, "STM32F4");
