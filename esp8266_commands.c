@@ -47,43 +47,72 @@ void cleanBuff()
 	count = 0;
 }
 
+/* find OK in buffor */
+int findOK()
+{
+	int i;
+	for(i = 0; i<count; i++)
+	{
+		if(buffor[i] == 'O'){
+			if(buffor[i+1] == 'K') return 1;
+		}
+	}
+	return -1;
+}
+
+/* send AT command */
+int sendCommand(char *command)
+{
+	cleanBuff();
+	int wait = 250;
+	SendString(command);
+	Delayms(500);
+	while(findOK() != 1){
+		Delayms(wait);
+		wait += 250;
+		if(wait > 10000) return -1;
+	}
+	return 1;
+}
+
 /* init esp8266 */
 void initAT()
 {
-	// esp client+AP mode enabled
-	SendString("AT+CWMODE=3\r\n");
-	Delayms(1000);
-
-	// esp reset command
-	SendString("AT+RST\r\n");
-	Delayms(1000);
-
 	// disable echo
 	SendString("ATE0\r\n");
-	Delayms(1000);
+	Delayms(500);
+
+	// esp client+AP mode enabled
+	sendCommand("AT+CWMODE=3\r\n");
+
+	// esp reset command
+	sendCommand("AT+RST\r\n");
+
 }
 
 /* configure network */
 void initNetwork()
 {
 	// connecting esp to network
-	SendString("AT+CWJAP=\"networktes\",\"myesp8266\"\r\n");
-	Delayms(5000);
+	sendCommand("AT+CWJAP=\"networktes\",\"myesp8266\"\r\n");
 
 	// connect to wunderground.com
-	SendString("AT+CIPSTART=\"TCP\",\"api.wunderground.com\",80\r\n");
-	Delayms(5000);
+	sendCommand("AT+CIPSTART=\"TCP\",\"api.wunderground.com\",80\r\n");
+
 }
 
 /* send http get request */
-void getHTTP()
+int getHTTP(char *getRequest)
 {
 	/* send request */
-	SendString("AT+CIPSEND=93\r\n");
-	Delayms(1000);
-	SendString("GET /api/3d8b02539ee9b6a0/conditions/q/EPPO.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n");
+	SendString("AT+CIPSEND=89\r\n");
+	Delayms(3000);
+	SendString(getRequest);
 	Delayms(6000);
 	SendString("+IPD,150:\r\n");
 	Delayms(3000);
+
+	if(count < 3000) return -1;
+	else return 1;
 }
 
