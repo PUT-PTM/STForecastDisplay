@@ -46,6 +46,19 @@ char humidityKK[4];
 char wind_kphKK[3];
 char pressureKK[5];
 
+/* test our symbol */
+uint8_t customChar[] = {
+		0x0E,
+		0x0A,
+		0x0A,
+		0x0A,
+		0x0A,
+		0x11,
+		0x11,
+		0x0E
+};
+
+
 /* read from USART */
 void USART3_IRQHandler(void)
 {
@@ -70,114 +83,119 @@ void EXTI1_IRQHandler(void)
 
 
 void TIM4_IRQHandler(void)
-				{
-				         if(TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET){
-				        		if(button1==0){
+{
+		 if(TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET){
+			 if(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_1) != RESET){
+			 button1++;
+			 if(button1>2)button1=0;
+				if(button1==0){
 
-				        			button1++;
-				        			switch (button2) {
-										case 0:
-											TM_HD44780_Clear();
-											TM_HD44780_Puts(0, 0, "Poznan");
-											TM_HD44780_Puts(0, 1, temperaturePO);
-											break;
-										case 1:
-											TM_HD44780_Clear();
-											TM_HD44780_Puts(0, 0, "Poznan");
-											TM_HD44780_Puts(0, 1, overviewPO);
-											break;
-										case 2:
-											TM_HD44780_Clear();
-											TM_HD44780_Puts(0, 0, "Poznan");
-											TM_HD44780_Puts(0, 1, humidityPO);
-											break;
-										case 3:
-											TM_HD44780_Clear();
-											TM_HD44780_Puts(0, 0, "Poznan");
-											TM_HD44780_Puts(0, 1, wind_kphPO);
-											break;
-										case 4:
-											TM_HD44780_Clear();
-											TM_HD44780_Puts(0, 0, "Poznan");
-											TM_HD44780_Puts(0, 1, pressurePO);
-											break;
-										default:
-											break;
-									}
 
-				        	        }
-				        	     else if(button1==1){
-				        	    	 button1++;
-				        	    	 switch (button2) {
-				        	    	 	case 0:
-				        	    	 		TM_HD44780_Clear();
-				        	    	 		TM_HD44780_Puts(0, 0, "Warszawa");
-				        	    	 		TM_HD44780_Puts(0, 1, temperatureWA);
-				        	    	 		break;
-				        	    	 	case 1:
-				        	    	 		TM_HD44780_Clear();
-				        	    	 		TM_HD44780_Puts(0, 0, "Warszawa");
-				        	    	 		TM_HD44780_Puts(0, 1, overviewWA);
-				        	    	 		break;
-				        	    	 	case 2:
-				        	    	 		TM_HD44780_Clear();
-				        	    	 		TM_HD44780_Puts(0, 0, "Warszawa");
-				        	    	 		TM_HD44780_Puts(0, 1, humidityWA);
-				        	    	 		break;
-				        	    	 	case 3:
-				        	    	 		TM_HD44780_Clear();
-				        	    	 		TM_HD44780_Puts(0, 0, "Warszawa");
-				        	    	 		TM_HD44780_Puts(0, 1, wind_kphWA);
-				        	    	 		break;
-				        	    	 	case 4:
-				        	    	 		TM_HD44780_Clear();
-				        	    	 		TM_HD44780_Puts(0, 0, "Warszawa");
-				        	    	 		TM_HD44780_Puts(0, 1, pressureWA);
-				        	    	 		break;
-				        	    	 	default:
-				        	    	 		break;
-				        	    	 	}
+					switch (button2) {
+						case 0:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Poznan");
+							TM_HD44780_PutCustom(0,1,0);
+							TM_HD44780_Puts(4, 1, temperaturePO);
+							break;
+						case 1:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Poznan");
+							TM_HD44780_Puts(0, 1, overviewPO);
+							break;
+						case 2:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Poznan");
+							TM_HD44780_Puts(0, 1, humidityPO);
+							break;
+						case 3:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Poznan");
+							TM_HD44780_Puts(0, 1, wind_kphPO);
+							break;
+						case 4:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Poznan");
+							TM_HD44780_Puts(0, 1, pressurePO);
+							break;
+						default:
+							break;
+					}
 
-				        	    	 }
-				        	     else if(button1==2){
-				        	     	button1=0;
-				        	     	switch (button2) {
-				        	     		case 0:
-				        	     			TM_HD44780_Clear();
-				        	     			TM_HD44780_Puts(0, 0, "Krakow");
-				        	     			TM_HD44780_Puts(0, 1, temperatureKK);
-				        	     			break;
-				        	     		case 1:
-				        	     			TM_HD44780_Clear();
-				        	     			TM_HD44780_Puts(0, 0, "Krakow");
-				        	     			TM_HD44780_Puts(0, 1, overviewKK);
-				        	     			break;
-				        	     		case 2:
-				        	     			TM_HD44780_Clear();
-				        	     			TM_HD44780_Puts(0, 0, "Krakow");
-				        	     			TM_HD44780_Puts(0, 1, humidityKK);
-				        	     			break;
-				        	     		case 3:
-				        	     			TM_HD44780_Clear();
-				        	     			TM_HD44780_Puts(0, 0, "Krakow");
-				        	     			TM_HD44780_Puts(0, 1, wind_kphKK);
-				        	     			break;
-				        	     		case 4:
-				        	     			TM_HD44780_Clear();
-				        	     			TM_HD44780_Puts(0, 0, "Krakow");
-				        	     			TM_HD44780_Puts(0, 1, pressureKK);
-				        	     			break;
-				        	     		default:
-				        	     			break;
-				        	     			}
+					}
+				 else if(button1==1){
 
-				        	     			}
-				        	          TIM_Cmd(TIM4, DISABLE);
-				        	          TIM_SetCounter(TIM4, 0);
-				            TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
-				            Delayms(500);
-				         	}
-				}
+					 switch (button2) {
+						case 0:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Warszawa");
+							TM_HD44780_Puts(0, 1, temperatureWA);
+							break;
+						case 1:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Warszawa");
+							TM_HD44780_Puts(0, 1, overviewWA);
+							break;
+						case 2:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Warszawa");
+							TM_HD44780_Puts(0, 1, humidityWA);
+							break;
+						case 3:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Warszawa");
+							TM_HD44780_Puts(0, 1, wind_kphWA);
+							break;
+						case 4:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Warszawa");
+							TM_HD44780_Puts(0, 1, pressureWA);
+							break;
+						default:
+							break;
+						}
+
+					 }
+				 else if(button1==2){
+
+					switch (button2) {
+						case 0:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Krakow");
+							TM_HD44780_Puts(0, 1, temperatureKK);
+							break;
+						case 1:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Krakow");
+							TM_HD44780_Puts(0, 1, overviewKK);
+							break;
+						case 2:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Krakow");
+							TM_HD44780_Puts(0, 1, humidityKK);
+							break;
+						case 3:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Krakow");
+							TM_HD44780_Puts(0, 1, wind_kphKK);
+							break;
+						case 4:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Krakow");
+							TM_HD44780_Puts(0, 1, pressureKK);
+							break;
+						default:
+							break;
+							}
+
+							}
+			 }
+			 TIM_Cmd(TIM4, DISABLE);
+			 TIM_SetCounter(TIM4, 0);
+			 TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
+
+			}
+}
 
 
 void EXTI2_IRQHandler(void)
@@ -190,130 +208,131 @@ void EXTI2_IRQHandler(void)
 }
 
 void TIM3_IRQHandler(void)
-				{
-				         if(TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET){
-				        	 if(button2==0){
-				        		 button2++;
-				        	 	switch (button1) {
-				        	 		case 0:
-				        	 			TM_HD44780_Clear();
-				        	 			TM_HD44780_Puts(0, 0, "Poznan");
-				        	 			TM_HD44780_Puts(0, 1, temperaturePO);
-				        	 			break;
-				        	 		case 1:
-				        	 			TM_HD44780_Clear();
-				        	 			TM_HD44780_Puts(0, 0, "Warszawa");
-				        	 			TM_HD44780_Puts(0, 1, temperatureWA);
-				        	 			break;
-				        	 		case 2:
-				        	 			TM_HD44780_Clear();
-				        	 			TM_HD44780_Puts(0, 0, "Krakow");
-				        	 			TM_HD44780_Puts(0, 1, temperatureKK);
-				        	 			break;
-				        	 		default:
-				        	 			break;
-				        	 	}
-
-				        	 	}
-				        	 	else if(button2==1){
-				        	 		button2++;
-				        	 		switch (button1) {
-				        	 			case 0:
-				        	 				TM_HD44780_Clear();
-				        	 				TM_HD44780_Puts(0, 0, "Poznan");
-				        	 				TM_HD44780_Puts(0, 1, overviewPO);
-				        	 				break;
-				        	 			case 1:
-				        	 				TM_HD44780_Clear();
-				        	 				TM_HD44780_Puts(0, 0, "Warszawa");
-				        	 				TM_HD44780_Puts(0, 1, overviewWA);
-				        	 				break;
-				        	 			case 2:
-				        	 				TM_HD44780_Clear();
-				        	 				TM_HD44780_Puts(0, 0, "Krakow");
-				        	 				TM_HD44780_Puts(0, 1, overviewKK);
-				        	 				break;
-				        	 			default:
-				        	 				break;
-				        	 		}
-
-				        	 		}
-				        	 	else if(button2==2){
-				        	 		button2++;
-				        	 		switch (button1) {
-				        	 			case 0:
-				        	 				TM_HD44780_Clear();
-				        	 				TM_HD44780_Puts(0, 0, "Poznan");
-				        	 				TM_HD44780_Puts(0, 1, humidityPO);
-				        	 				break;
-				        	 			case 1:
-				        	 				TM_HD44780_Clear();
-				        	 				TM_HD44780_Puts(0, 0, "Warszawa");
-				        	 				TM_HD44780_Puts(0, 1, humidityWA);
-				        	 				break;
-				        	 			case 2:
-				        	 				TM_HD44780_Clear();
-				        	 				TM_HD44780_Puts(0, 0, "Krakow");
-				        	 				TM_HD44780_Puts(0, 1, humidityKK);
-				        	 				break;
-				        	 			default:
-				        	 				break;
-				        	 				}
-
-				        	 				}
-				        	 	else if(button2==3){
-				        	 		button2++;
-				        	 		switch (button1) {
-				        	 			case 0:
-				        	 				TM_HD44780_Clear();
-				        	 				TM_HD44780_Puts(0, 0, "Poznan");
-				        	 				TM_HD44780_Puts(0, 1, wind_kphPO);
-				        	 				break;
-				        	 			case 1:
-				        	 				TM_HD44780_Clear();
-				        	 				TM_HD44780_Puts(0, 0, "Warszawa");
-				        	 				TM_HD44780_Puts(0, 1, wind_kphWA);
-				        	 				break;
-				        	 			case 2:
-				        	 				TM_HD44780_Clear();
-				        	 				TM_HD44780_Puts(0, 0, "Krakow");
-				        	 				TM_HD44780_Puts(0, 1, wind_kphKK);
-				        	 				break;
-				        	 			default:
-				        	 				break;
-				        	 					}
-
-				        	 					}
-				        	 	else if(button2==4){
-				        	 		button2=0;
-				        	 		switch (button1) {
-				        	 			case 0:
-				        	 				TM_HD44780_Clear();
-				        	 				TM_HD44780_Puts(0, 0, "Poznan");
-				        	 				TM_HD44780_Puts(0, 1, pressurePO);
-				        	 				break;
-				        	 			case 1:
-				        	 				TM_HD44780_Clear();
-				        	 				TM_HD44780_Puts(0, 0, "Warszawa");
-				        	 				TM_HD44780_Puts(0, 1, pressureWA);
-				        	 				break;
-				        	 			case 2:
-				        	 				TM_HD44780_Clear();
-				        	 				TM_HD44780_Puts(0, 0, "Krakow");
-				        	 				TM_HD44780_Puts(0, 1, pressureKK);
-				        	 				break;
-				        	 			default:
-				        	 				break;
-				        	 				}
-
-				        	 				}
-
-				        	          TIM_Cmd(TIM3, DISABLE);
-				        	          TIM_SetCounter(TIM3, 0);
-				            TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-				            Delayms(500);
-				         	}
+{
+		 if(TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET){
+			 if(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_2) != RESET){
+			 button2++;
+			 if(button2>4)button2=0;
+			 if(button2==0){
+				 switch (button1) {
+					case 0:
+						TM_HD44780_Clear();
+						TM_HD44780_Puts(0, 0, "Poznan");
+						TM_HD44780_Puts(0, 1, temperaturePO);
+						break;
+					case 1:
+						TM_HD44780_Clear();
+						TM_HD44780_Puts(0, 0, "Warszawa");
+						TM_HD44780_Puts(0, 1, temperatureWA);
+						break;
+					case 2:
+						TM_HD44780_Clear();
+						TM_HD44780_Puts(0, 0, "Krakow");
+						TM_HD44780_Puts(0, 1, temperatureKK);
+						break;
+					default:
+						break;
 				}
+
+				}
+				else if(button2==1){
+
+					switch (button1) {
+						case 0:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Poznan");
+							TM_HD44780_Puts(0, 1, overviewPO);
+							break;
+						case 1:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Warszawa");
+							TM_HD44780_Puts(0, 1, overviewWA);
+							break;
+						case 2:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Krakow");
+							TM_HD44780_Puts(0, 1, overviewKK);
+							break;
+						default:
+							break;
+					}
+
+					}
+				else if(button2==2){
+
+					switch (button1) {
+						case 0:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Poznan");
+							TM_HD44780_Puts(0, 1, humidityPO);
+							break;
+						case 1:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Warszawa");
+							TM_HD44780_Puts(0, 1, humidityWA);
+							break;
+						case 2:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Krakow");
+							TM_HD44780_Puts(0, 1, humidityKK);
+							break;
+						default:
+							break;
+							}
+
+							}
+				else if(button2==3){
+
+					switch (button1) {
+						case 0:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Poznan");
+							TM_HD44780_Puts(0, 1, wind_kphPO);
+							break;
+						case 1:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Warszawa");
+							TM_HD44780_Puts(0, 1, wind_kphWA);
+							break;
+						case 2:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Krakow");
+							TM_HD44780_Puts(0, 1, wind_kphKK);
+							break;
+						default:
+							break;
+								}
+
+								}
+				else if(button2==4){
+
+					switch (button1) {
+						case 0:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Poznan");
+							TM_HD44780_Puts(0, 1, pressurePO);
+							break;
+						case 1:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Warszawa");
+							TM_HD44780_Puts(0, 1, pressureWA);
+							break;
+						case 2:
+							TM_HD44780_Clear();
+							TM_HD44780_Puts(0, 0, "Krakow");
+							TM_HD44780_Puts(0, 1, pressureKK);
+							break;
+						default:
+							break;
+							}
+
+							}
+		  }
+		  TIM_Cmd(TIM3, DISABLE);
+		  TIM_SetCounter(TIM3, 0);
+		  TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
+		 }
+}
 
 
 
@@ -338,11 +357,15 @@ int main(void)
 	TM_HD44780_Init(16, 2);
 	init_EXTI();
 	Init_Usart();
+	TM_HD44780_CreateChar(0, &customChar[0]);
 
 	int i;
 	for(i=0;i<4096;i++){
 		buffor[i]=0;
 	}
+
+	TM_HD44780_Clear();
+	TM_HD44780_Puts(0, 0, "Wczytywanie");
 
 	initAT();
 	initNetwork();
@@ -373,6 +396,8 @@ int main(void)
 	strncpy(wind_kphKK, parseJson("wind_kph"), 3);
 	strncpy(pressureKK, parseJson("pressure_mb"), 5);
 
+	TM_HD44780_Clear();
+	TM_HD44780_Puts(0, 0, "Ukonczone");
 
 	//TM_HD44780_Puts(0, 0, "STM32F4");
 	//TM_HD44780_Puts(0, 1, "20x4 HD44780 LCD");
@@ -448,7 +473,7 @@ void Init_Usart(){
 
 
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
-	TIM_TimeBaseStructure.TIM_Period = 1679;
+	TIM_TimeBaseStructure.TIM_Period = 2099;
 	TIM_TimeBaseStructure.TIM_Prescaler = 9999;
 	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
@@ -491,7 +516,7 @@ void Init_Usart(){
 
 
 
-	TIM_TimeBaseStructure.TIM_Period = 1679;
+	TIM_TimeBaseStructure.TIM_Period = 2099;
 	TIM_TimeBaseStructure.TIM_Prescaler = 9999;
 	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
