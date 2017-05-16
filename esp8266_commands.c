@@ -70,7 +70,7 @@ int sendCommand(char *command)
 	while(findOK() != 1){
 		Delayms(wait);
 		wait += 250;
-		if(wait > 10000) return -1;
+		if(wait > 6000) return -1;
 	}
 	return 1;
 }
