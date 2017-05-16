@@ -96,27 +96,39 @@ void TIM4_IRQHandler(void)
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Poznan");
 							TM_HD44780_PutCustom(0,1,0);
-							TM_HD44780_Puts(4, 1, temperaturePO);
+							TM_HD44780_Puts(1, 1, "temp");
+							TM_HD44780_Puts(6, 1, temperaturePO);
+							TM_HD44780_PutCustom(10,1,4);
+							TM_HD44780_Puts(11, 1, "C");
 							break;
 						case 1:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Poznan");
 							TM_HD44780_Puts(0, 1, overviewPO);
+
 							break;
 						case 2:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Poznan");
-							TM_HD44780_Puts(0, 1, humidityPO);
+							TM_HD44780_PutCustom(0,1,3);
+							TM_HD44780_Puts(1, 1, "humidity");
+							TM_HD44780_Puts(10, 1, humidityPO);
 							break;
 						case 3:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Poznan");
-							TM_HD44780_Puts(0, 1, wind_kphPO);
+							TM_HD44780_PutCustom(0,1,1);
+							TM_HD44780_Puts(1, 1, "wind");
+							TM_HD44780_Puts(6, 1, wind_kphPO);
+							TM_HD44780_Puts(9, 1, "km/h");
 							break;
 						case 4:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Poznan");
-							TM_HD44780_Puts(0, 1, pressurePO);
+							TM_HD44780_PutCustom(0,1,2);
+							TM_HD44780_Puts(1, 1, "press");
+							TM_HD44780_Puts(7, 1, pressurePO);
+							TM_HD44780_Puts(12, 1, "hpa");
 							break;
 						default:
 							break;
@@ -129,7 +141,11 @@ void TIM4_IRQHandler(void)
 						case 0:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Warszawa");
-							TM_HD44780_Puts(0, 1, temperatureWA);
+							TM_HD44780_PutCustom(0,1,0);
+							TM_HD44780_Puts(1, 1, "temp");
+							TM_HD44780_Puts(6, 1, temperatureWA);
+							TM_HD44780_PutCustom(10,1,4);
+							TM_HD44780_Puts(11, 1, "C");
 							break;
 						case 1:
 							TM_HD44780_Clear();
@@ -139,17 +155,25 @@ void TIM4_IRQHandler(void)
 						case 2:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Warszawa");
-							TM_HD44780_Puts(0, 1, humidityWA);
+							TM_HD44780_PutCustom(0,1,3);
+							TM_HD44780_Puts(1, 1, "humidity");
+							TM_HD44780_Puts(10, 1, humidityWA);
 							break;
 						case 3:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Warszawa");
-							TM_HD44780_Puts(0, 1, wind_kphWA);
+							TM_HD44780_PutCustom(0,1,1);
+							TM_HD44780_Puts(1, 1, "wind");
+							TM_HD44780_Puts(6, 1, wind_kphWA);
+							TM_HD44780_Puts(9, 1, "km/h");
 							break;
 						case 4:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Warszawa");
-							TM_HD44780_Puts(0, 1, pressureWA);
+							TM_HD44780_PutCustom(0,1,2);
+							TM_HD44780_Puts(1, 1, "press");
+							TM_HD44780_Puts(7, 1, pressureWA);
+							TM_HD44780_Puts(12, 1, "hpa");
 							break;
 						default:
 							break;
@@ -162,7 +186,11 @@ void TIM4_IRQHandler(void)
 						case 0:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Krakow");
-							TM_HD44780_Puts(0, 1, temperatureKK);
+							TM_HD44780_PutCustom(0,1,0);
+							TM_HD44780_Puts(1, 1, "temp");
+							TM_HD44780_Puts(6, 1, temperatureKK);
+							TM_HD44780_PutCustom(10,1,4);
+							TM_HD44780_Puts(11, 1, "C");
 							break;
 						case 1:
 							TM_HD44780_Clear();
@@ -172,17 +200,25 @@ void TIM4_IRQHandler(void)
 						case 2:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Krakow");
-							TM_HD44780_Puts(0, 1, humidityKK);
+							TM_HD44780_PutCustom(0,1,3);
+							TM_HD44780_Puts(1, 1, "humidity");
+							TM_HD44780_Puts(10, 1, humidityKK);
 							break;
 						case 3:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Krakow");
-							TM_HD44780_Puts(0, 1, wind_kphKK);
+							TM_HD44780_PutCustom(0,1,1);
+							TM_HD44780_Puts(1, 1, "wind");
+							TM_HD44780_Puts(6, 1, wind_kphKK);
+							TM_HD44780_Puts(9, 1, "km/h");
 							break;
 						case 4:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Krakow");
-							TM_HD44780_Puts(0, 1, pressureKK);
+							TM_HD44780_PutCustom(0,1,2);
+							TM_HD44780_Puts(1, 1, "press");
+							TM_HD44780_Puts(7, 1, pressureKK);
+							TM_HD44780_Puts(12, 1, "hpa");
 							break;
 						default:
 							break;
@@ -218,17 +254,29 @@ void TIM3_IRQHandler(void)
 					case 0:
 						TM_HD44780_Clear();
 						TM_HD44780_Puts(0, 0, "Poznan");
-						TM_HD44780_Puts(0, 1, temperaturePO);
+						TM_HD44780_PutCustom(0,1,0);
+						TM_HD44780_Puts(1, 1, "temp");
+						TM_HD44780_Puts(6, 1, temperaturePO);
+						TM_HD44780_PutCustom(10,1,4);
+						TM_HD44780_Puts(11, 1, "C");
 						break;
 					case 1:
 						TM_HD44780_Clear();
 						TM_HD44780_Puts(0, 0, "Warszawa");
-						TM_HD44780_Puts(0, 1, temperatureWA);
+						TM_HD44780_PutCustom(0,1,0);
+						TM_HD44780_Puts(1, 1, "temp");
+						TM_HD44780_Puts(6, 1, temperatureWA);
+						TM_HD44780_PutCustom(10,1,4);
+						TM_HD44780_Puts(11, 1, "C");
 						break;
 					case 2:
 						TM_HD44780_Clear();
 						TM_HD44780_Puts(0, 0, "Krakow");
-						TM_HD44780_Puts(0, 1, temperatureKK);
+						TM_HD44780_PutCustom(0,1,0);
+						TM_HD44780_Puts(1, 1, "temp");
+						TM_HD44780_Puts(6, 1, temperatureKK);
+						TM_HD44780_PutCustom(10,1,4);
+						TM_HD44780_Puts(11, 1, "C");
 						break;
 					default:
 						break;
@@ -264,17 +312,23 @@ void TIM3_IRQHandler(void)
 						case 0:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Poznan");
-							TM_HD44780_Puts(0, 1, humidityPO);
+							TM_HD44780_PutCustom(0,1,3);
+							TM_HD44780_Puts(1, 1, "humidity");
+							TM_HD44780_Puts(10, 1, humidityPO);
 							break;
 						case 1:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Warszawa");
-							TM_HD44780_Puts(0, 1, humidityWA);
+							TM_HD44780_PutCustom(0,1,3);
+							TM_HD44780_Puts(1, 1, "humidity");
+							TM_HD44780_Puts(10, 1, humidityWA);
 							break;
 						case 2:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Krakow");
-							TM_HD44780_Puts(0, 1, humidityKK);
+							TM_HD44780_PutCustom(0,1,3);
+							TM_HD44780_Puts(1, 1, "humidity");
+							TM_HD44780_Puts(10, 1, humidityKK);
 							break;
 						default:
 							break;
@@ -287,17 +341,26 @@ void TIM3_IRQHandler(void)
 						case 0:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Poznan");
-							TM_HD44780_Puts(0, 1, wind_kphPO);
+							TM_HD44780_PutCustom(0,1,1);
+							TM_HD44780_Puts(1, 1, "wind");
+							TM_HD44780_Puts(6, 1, wind_kphPO);
+							TM_HD44780_Puts(9, 1, "km/h");
 							break;
 						case 1:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Warszawa");
-							TM_HD44780_Puts(0, 1, wind_kphWA);
+							TM_HD44780_PutCustom(0,1,1);
+							TM_HD44780_Puts(1, 1, "wind");
+							TM_HD44780_Puts(6, 1, wind_kphWA);
+							TM_HD44780_Puts(9, 1, "km/h");
 							break;
 						case 2:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Krakow");
-							TM_HD44780_Puts(0, 1, wind_kphKK);
+							TM_HD44780_PutCustom(0,1,1);
+							TM_HD44780_Puts(1, 1, "wind");
+							TM_HD44780_Puts(6, 1, wind_kphKK);
+							TM_HD44780_Puts(9, 1, "km/h");
 							break;
 						default:
 							break;
@@ -310,17 +373,26 @@ void TIM3_IRQHandler(void)
 						case 0:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Poznan");
-							TM_HD44780_Puts(0, 1, pressurePO);
+							TM_HD44780_PutCustom(0,1,2);
+							TM_HD44780_Puts(1, 1, "press");
+							TM_HD44780_Puts(7, 1, pressurePO);
+							TM_HD44780_Puts(12, 1, "hpa");
 							break;
 						case 1:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Warszawa");
-							TM_HD44780_Puts(0, 1, pressureWA);
+							TM_HD44780_PutCustom(0,1,2);
+							TM_HD44780_Puts(1, 1, "press");
+							TM_HD44780_Puts(7, 1, pressureWA);
+							TM_HD44780_Puts(12, 1, "hpa");
 							break;
 						case 2:
 							TM_HD44780_Clear();
 							TM_HD44780_Puts(0, 0, "Krakow");
-							TM_HD44780_Puts(0, 1, pressureKK);
+							TM_HD44780_PutCustom(0,1,2);
+							TM_HD44780_Puts(1, 1, "press");
+							TM_HD44780_Puts(7, 1, pressureKK);
+							TM_HD44780_Puts(12, 1, "hpa");
 							break;
 						default:
 							break;
@@ -359,6 +431,71 @@ int main(void)
 	Init_Usart();
 	TM_HD44780_CreateChar(0, &customChar[0]);
 
+	//wind
+	uint8_t wind[] = {
+			0x00,
+			0x18,
+			0x05,
+			0x02,
+			0x18,
+			0x05,
+			0x02,
+			0x00
+	};
+	TM_HD44780_CreateChar(1, &wind[0]);
+
+	//pressure
+	uint8_t pressure[] = {
+			0x00,
+			0x04,
+			0x04,
+			0x04,
+			0x04,
+			0x15,
+			0x0E,
+			0x04
+	};
+	TM_HD44780_CreateChar(2, &pressure[0]);
+
+	//rain
+	uint8_t rain[] = {
+			0x00,
+			0x0C,
+			0x12,
+			0x11,
+			0x0E,
+			0x00,
+			0x08,
+			0x02
+	};
+	TM_HD44780_CreateChar(3, &rain[0]);
+
+	//C
+	uint8_t C[] = {
+			0x00,
+			0x0E,
+			0x0A,
+			0x0E,
+			0x00,
+			0x00,
+			0x00,
+			0x00
+	};
+	TM_HD44780_CreateChar(4, &C[0]);
+
+	//blank
+		uint8_t blank[] = {
+				0x1F,
+				0x1F,
+				0x1F,
+				0x1F,
+				0x1F,
+				0x1F,
+				0x1F,
+				0x1F
+		};
+		TM_HD44780_CreateChar(5, &blank[0]);
+
 	int i;
 	for(i=0;i<4096;i++){
 		buffor[i]=0;
@@ -368,37 +505,64 @@ int main(void)
 	TM_HD44780_Puts(0, 0, "Wczytywanie");
 
 	initAT();
+
+	TM_HD44780_PutCustom(0,1,5);
+		TM_HD44780_PutCustom(1,1,5);
+
 	initNetwork();
+
 	cleanBuff();
+
+	TM_HD44780_PutCustom(2,1,5);
+		TM_HD44780_PutCustom(3,1,5);
+		TM_HD44780_PutCustom(4,1,5);
+		TM_HD44780_PutCustom(5,1,5);
 
 	getHTTP(getPoznan);
 	strncpy(overviewPO, parseJson("\"weather"), 15);
 	strncpy(temperaturePO, parseJson("temp_c"), 4);
-	strncpy(humidityPO, parseJson("relative_humidity"), 4);
+	strncpy(humidityPO, parseJson("relative_humidity"), 5);
 	strncpy(wind_kphPO, parseJson("wind_kph"), 3);
 	strncpy(pressurePO, parseJson("pressure_mb"), 5);
 
+
+
 	cleanBuff();
+
+	TM_HD44780_PutCustom(6,1,5);
+		TM_HD44780_PutCustom(7,1,5);
+		TM_HD44780_PutCustom(8,1,5);
+		TM_HD44780_PutCustom(9,1,5);
 
 	getHTTP(getWarszawa);
 	strncpy(overviewWA, parseJson("\"weather"), 15);
 	strncpy(temperatureWA, parseJson("temp_c"), 4);
-	strncpy(humidityWA, parseJson("relative_humidity"), 4);
+	strncpy(humidityWA, parseJson("relative_humidity"), 5);
 	strncpy(wind_kphWA, parseJson("wind_kph"), 3);
 	strncpy(pressureWA, parseJson("pressure_mb"), 5);
 
+
+
 	cleanBuff();
+
+	TM_HD44780_PutCustom(10,1,5);
+	TM_HD44780_PutCustom(11,1,5);
+	TM_HD44780_PutCustom(12,1,5);
+	TM_HD44780_PutCustom(13,1,5);
 
 	getHTTP(getKrakow);
 	strncpy(overviewKK, parseJson("\"weather"), 15);
 	strncpy(temperatureKK, parseJson("temp_c"), 4);
-	strncpy(humidityKK, parseJson("relative_humidity"), 4);
+	strncpy(humidityKK, parseJson("relative_humidity"), 5);
 	strncpy(wind_kphKK, parseJson("wind_kph"), 3);
 	strncpy(pressureKK, parseJson("pressure_mb"), 5);
 
+
+
 	TM_HD44780_Clear();
 	TM_HD44780_Puts(0, 0, "Ukonczone");
-
+	int o=0;
+	for(o;o<=15;o++) {TM_HD44780_PutCustom(o,1,5);}
 	//TM_HD44780_Puts(0, 0, "STM32F4");
 	//TM_HD44780_Puts(0, 1, "20x4 HD44780 LCD");
 	//Delayms(3000);

@@ -38,3 +38,5 @@
 *.elf
 ForecastDisplay/ForecastDisplay.elf.xcodeproj/project.pbxproj
 *.elf
+ForecastDisplay/Debug/bin/ForecastDisplay.elf
+*.log
