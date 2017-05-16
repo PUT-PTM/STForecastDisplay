@@ -26,22 +26,22 @@
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/CooCox/CoIDE/workspace/GitHub/STForecastDisplay/main.c" title="main.c" tooltip="C:/CooCox/CoIDE/workspace/GitHub/STForecastDisplay/main.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="esp8266_commands.h" partName="esp8266_commands.h" path="C:/Users/Dominik/Documents/GitHub/STForecastDisplay/esp8266_commands.h" title="esp8266_commands.h" tooltip="C:/Users/Dominik/Documents/GitHub/STForecastDisplay/esp8266_commands.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ForecastDisplay/esp8266_commands.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="978" selectionTopPixel="406"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="esp8266_commands.c" partName="esp8266_commands.c" path="C:/Users/Dominik/Documents/GitHub/STForecastDisplay/esp8266_commands.c" title="esp8266_commands.c" tooltip="C:/Users/Dominik/Documents/GitHub/STForecastDisplay/esp8266_commands.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ForecastDisplay/esp8266_commands.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="467" selectionTopPixel="1610"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/Dominik/Documents/GitHub/STForecastDisplay/main.c" title="main.c" tooltip="C:/Users/Dominik/Documents/GitHub/STForecastDisplay/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ForecastDisplay/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="10326" selectionTopPixel="1219"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f4xx.c" partName="startup_stm32f4xx.c" path="C:/Users/Dominik/Documents/GitHub/STForecastDisplay/cmsis_boot/startup/startup_stm32f4xx.c" title="startup_stm32f4xx.c" tooltip="C:/Users/Dominik/Documents/GitHub/STForecastDisplay/cmsis_boot/startup/startup_stm32f4xx.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ForecastDisplay/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="14795" selectionTopPixel="4403"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="esp8266_commands.h" partName="esp8266_commands.h" title="esp8266_commands.h" tooltip="C:\CooCox\CoIDE\workspace\GitHub\STForecastDisplay\esp8266_commands.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" uri="file:/C:/CooCox/CoIDE/workspace/GitHub/STForecastDisplay/esp8266_commands.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="27" selectionOffset="201" selectionTopPixel="50"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2190" selectionTopPixel="1852"/>
 </editor>
 </editors>
 <views>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
-<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="36">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="28">
 <expanded>
 <element path="/ForecastDisplay"/>
 <element path="/ForecastDisplay/cmsis"/>
@@ -54,7 +54,7 @@
 <element path="/ForecastDisplay/stdio"/>
 </expanded>
 <selection>
-<element path="/ForecastDisplay"/>
+<element path="/ForecastDisplay/esp8266_commands.h"/>
 </selection>
 </viewState>
 </view>
@@ -124,7 +124,7 @@
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@5f0774" ratio="0.7492013" ratioLeft="469" ratioRight="157" relationship="4" relative="org.eclipse.ui.internal.ViewStack@1da6521">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@5f0774" ratio="0.73322684" ratioLeft="459" ratioRight="167" relationship="4" relative="org.eclipse.ui.internal.ViewStack@1da6521">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
@@ -197,46 +197,58 @@
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <hide_toolbar_item_id id="org.coocox.builder.ui.build"/>
 <hide_toolbar_item_id id="org.coocox.welcome.ui.action.welcome"/>
-<hide_toolbar_item_id id="org.coocox.codebugger.configuration.coideProgramDownloadAction"/>
 <hide_toolbar_item_id id="org.coocox.component.ui.ShowRepositoryAction"/>
+<hide_toolbar_item_id id="org.coocox.codebugger.configuration.coideProgramDownloadAction"/>
 <view id="org.coocox.codebugger.trace.ui.traceview"/>
 <view id="org.eclipse.debug.ui.VariableView"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.debug.ui.DebugView"/>
 <view id="org.coocox.builder.ui.views.ProjectView"/>
-<fastViewBars>&#x0A;<fastViewBar fastViewLocation="131072" id="org.eclipse.ui.internal.ViewStack@b436b8" orientation="512" selectedTabId="org.eclipse.cdt.dsf.debug.ui.disassembly.view" style="0">&#x0A;<fastViews>&#x0A;<view id="org.eclipse.cdt.dsf.debug.ui.disassembly.view" ratio="0.3"/>
-</fastViews>
-</fastViewBar>
-</fastViewBars>
+<fastViewBars/>
 <viewLayoutRec closeable="false" id="org.eclipse.debug.ui.DebugView"/>
-<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="org.eclipse.ui.internal.ViewStack@174739f">&#x0A;<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">&#x0A;<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<layout>
+<mainWindow>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@174739f">
+<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">
+<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.7496318" ratioLeft="1018" ratioRight="340" relationship="2" relative="org.eclipse.ui.internal.ViewStack@174739f">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="stickyFolderRight" ratio="0.7496318" ratioLeft="1018" ratioRight="340" relationship="2" relative="org.eclipse.ui.internal.ViewStack@174739f">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@190dbf2" ratio="0.69808304" ratioLeft="437" ratioRight="189" relationship="4" relative="org.eclipse.ui.internal.ViewStack@174739f">&#x0A;<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@190dbf2" ratio="0.69808304" ratioLeft="437" ratioRight="189" relationship="4" relative="org.eclipse.ui.internal.ViewStack@174739f">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
 <part id="1"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@1580129" ratio="0.5" ratioLeft="679" ratioRight="679" relationship="2" relative="org.eclipse.ui.internal.ViewStack@190dbf2">&#x0A;<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">&#x0A;<page content="org.coocox.codebugger.trace.ui.traceview" label="Semihosting"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1580129" ratio="0.5" ratioLeft="679" ratioRight="679" relationship="2" relative="org.eclipse.ui.internal.ViewStack@190dbf2">
+<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">
+<page content="org.coocox.codebugger.trace.ui.traceview" label="Semihosting"/>
 <page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
 <page content="org.eclipse.debug.ui.ExpressionView" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.MemoryView" label="LabelNotFound"/>
 <page content="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
 <part id="1"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@b436b8" ratio="0.7496318" ratioLeft="1018" ratioRight="340" relationship="2" relative="org.eclipse.ui.internal.ViewStack@174739f">&#x0A;<folder appearance="2" expanded="0">&#x0A;<page content="org.eclipse.cdt.dsf.debug.ui.disassembly.view" label="LabelNotFound"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@b436b8" ratio="0.7496318" ratioLeft="1018" ratioRight="340" relationship="2" relative="org.eclipse.ui.internal.ViewStack@174739f">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.cdt.dsf.debug.ui.disassembly.view" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
 <page content="org.coocox.coassistant.view.CoAssistantView_debug" label="LabelNotFound"/>
@@ -251,160 +263,163 @@
 <workingSets/>
 <navigationHistory>
 <editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ForecastDisplay/esp8266_commands.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ForecastDisplay/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ForecastDisplay/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ForecastDisplay/cmsis_lib/source/stm32f4xx_usart.c"/>
-<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" uri="file:/C:/CooCox/CoIDE/workspace/GitHub/STForecastDisplay/esp8266_commands.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ForecastDisplay/esp8266_commands.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ForecastDisplay/cmsis_lib/include/tm_stm32f4_delay.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ForecastDisplay/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ForecastDisplay/esp8266_commands.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ForecastDisplay/esp8266_commands.h"/>
 </editors>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="891" y="0"/>
+<item historyLabel="tm_stm32f4_delay.h" index="3">
+<position info="not_deleted" x="8344" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="515" y="0"/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1811" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="766" y="0"/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1804" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="891" y="0"/>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="10290" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1716" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="766" y="0"/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1861" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="891" y="0"/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1716" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="514" y="0"/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1861" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="766" y="0"/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1857" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="891" y="0"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="10290" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1716" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="476" y="0"/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1861" y="0"/>
 </item>
-<item historyLabel="startup_stm32f4xx.c" index="1">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="10290" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="766" y="0"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="11055" y="0"/>
 </item>
-<item historyLabel="stm32f4xx_usart.c" index="2">
-<position info="not_deleted" x="53450" y="0"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="11401" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="766" y="0"/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1716" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="515" y="0"/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1695" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="766" y="0"/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1908" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="891" y="0"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="10797" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="233" y="0"/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1908" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="766" y="0"/>
+<item historyLabel="esp8266_commands.h" index="2">
+<position info="not_deleted" x="978" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="891" y="0"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="502" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="865" y="0"/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1742" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="766" y="0"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="10290" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="891" y="0"/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1716" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="476" y="0"/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1861" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="766" y="0"/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1716" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="891" y="0"/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1861" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="515" y="0"/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1716" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="439" y="23"/>
+<item historyLabel="esp8266_commands.c" index="0">
+<position info="not_deleted" x="1861" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="506" y="0"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="10290" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="766" y="0"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="11592" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="865" y="0"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="11645" y="0"/>
 </item>
-<item historyLabel="startup_stm32f4xx.c" index="1">
-<position info="not_deleted" x="14795" y="0"/>
+<item historyLabel="esp8266_commands.c" index="5">
+<position info="not_deleted" x="1861" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="766" y="0"/>
+<item historyLabel="esp8266_commands.h" index="6">
+<position info="not_deleted" x="978" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="891" y="0"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="9322" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="505" y="0"/>
+<item historyLabel="esp8266_commands.c" index="5">
+<position info="not_deleted" x="467" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="766" y="0"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="9322" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="891" y="0"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="5036" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1297" y="7"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="11900" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="464" y="0"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="7725" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="9987" y="0"/>
+<item historyLabel="esp8266_commands.c" index="5">
+<position info="not_deleted" x="467" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="708" y="0"/>
+<item historyLabel="esp8266_commands.h" index="6">
+<position info="not_deleted" x="978" y="0"/>
 </item>
-<item historyLabel="esp8266_commands.h" index="3">
-<position info="not_deleted" x="201" y="27"/>
+<item historyLabel="esp8266_commands.c" index="5">
+<position info="not_deleted" x="467" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1052" y="0"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="13490" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="370" y="0"/>
+<item historyLabel="esp8266_commands.c" index="5">
+<position info="not_deleted" x="467" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="546" y="0"/>
+<item historyLabel="esp8266_commands.h" index="6">
+<position info="not_deleted" x="978" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="370" y="0"/>
+<item historyLabel="esp8266_commands.c" index="5">
+<position info="not_deleted" x="467" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="1039" y="0"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="13490" y="0"/>
 </item>
-<item active="true" historyLabel="main.c" index="0">
-<position info="not_deleted" x="4318" y="0"/>
+<item active="true" historyLabel="main.c" index="4">
+<position info="not_deleted" x="1344" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -413,51 +428,50 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="misc.c" tooltip="ForecastDisplay/cmsis_lib/source/misc.c">
-<persistable path="/ForecastDisplay/cmsis_lib/source/misc.c"/>
-</file>
-<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="esp8266_commands.h" tooltip="C:\CooCox\CoIDE\workspace\GitHub\STForecastDisplay\esp8266_commands.h">
-<persistable uri="file:/C:/CooCox/CoIDE/workspace/GitHub/STForecastDisplay/esp8266_commands.h"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="ForecastDisplay/main.c">
 <persistable path="/ForecastDisplay/main.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_rcc.c" tooltip="ForecastDisplay/cmsis_lib/source/stm32f4xx_rcc.c">
-<persistable path="/ForecastDisplay/cmsis_lib/source/stm32f4xx_rcc.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f4xx.c" tooltip="ForecastDisplay/cmsis_boot/startup/startup_stm32f4xx.c">
+<persistable path="/ForecastDisplay/cmsis_boot/startup/startup_stm32f4xx.c"/>
 </file>
-<file factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" tooltip="Repository">
-<persistable>&#x0A;<subPage/>
-</persistable>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="esp8266_commands.c" tooltip="ForecastDisplay/esp8266_commands.c">
+<persistable path="/ForecastDisplay/esp8266_commands.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="defines.h" tooltip="czyste/cmsis_lib/include/defines.h">
-<persistable path="/czyste/cmsis_lib/include/defines.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="esp8266_commands.h" tooltip="ForecastDisplay/esp8266_commands.h">
+<persistable path="/ForecastDisplay/esp8266_commands.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_timer_properties.c" tooltip="ForecastDisplay/cmsis_lib/source/tm_stm32f4_timer_properties.c">
-<persistable path="/ForecastDisplay/cmsis_lib/source/tm_stm32f4_timer_properties.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.asm.AsmEditor" name="sh_cmd.s" tooltip="ForecastDisplay/semihosting/sh_cmd.s">
+<persistable path="/ForecastDisplay/semihosting/sh_cmd.s"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_delay.h" tooltip="ForecastDisplay/cmsis_lib/include/tm_stm32f4_delay.h">
 <persistable path="/ForecastDisplay/cmsis_lib/include/tm_stm32f4_delay.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f4xx.c" tooltip="STM32DiscoveryVCP/cmsis_boot/startup/startup_stm32f4xx.c">
-<persistable path="/STM32DiscoveryVCP/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_usart.h" tooltip="ForecastDisplay/cmsis_lib/include/stm32f4xx_usart.h">
+<persistable path="/ForecastDisplay/cmsis_lib/include/stm32f4xx_usart.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="STM32DiscoveryVCP/main.c">
-<persistable path="/STM32DiscoveryVCP/main.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="printf.c" tooltip="ForecastDisplay/stdio/printf.c">
+<persistable path="/ForecastDisplay/stdio/printf.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx.h" tooltip="STM32DiscoveryVCP/cmsis_boot/stm32f4xx.h">
-<persistable path="/STM32DiscoveryVCP/cmsis_boot/stm32f4xx.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="semihosting.c" tooltip="ForecastDisplay/semihosting/semihosting.c">
+<persistable path="/ForecastDisplay/semihosting/semihosting.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="HD44780.c" tooltip="STM32DiscoveryVCP/cmsis_lib/source/HD44780.c">
-<persistable path="/STM32DiscoveryVCP/cmsis_lib/source/HD44780.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_usart.c" tooltip="ForecastDisplay/cmsis_lib/source/stm32f4xx_usart.c">
+<persistable path="/ForecastDisplay/cmsis_lib/source/stm32f4xx_usart.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="HD44780.h" tooltip="STM32DiscoveryVCP/cmsis_lib/include/HD44780.h">
-<persistable path="/STM32DiscoveryVCP/cmsis_lib/include/HD44780.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx.h" tooltip="ForecastDisplay/cmsis_boot/stm32f4xx.h">
+<persistable path="/ForecastDisplay/cmsis_boot/stm32f4xx.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="syscalls.c" tooltip="STM32DiscoveryVCP/cmsis_lib/source/syscalls.c">
-<persistable path="/STM32DiscoveryVCP/cmsis_lib/source/syscalls.c"/>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_usart.h" tooltip="C:\Users\Dominik\Documents\GitHub\STForecastDisplay\cmsis_lib\include\tm_stm32f4_usart.h">
+<persistable uri="file:/C:/Users/Dominik/Documents/GitHub/STForecastDisplay/cmsis_lib/include/tm_stm32f4_usart.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f4xx.c" tooltip="[CoIDE]_USB_CDC_Example/cmsis_boot/startup/startup_stm32f4xx.c">
-<persistable path="/[CoIDE]_USB_CDC_Example/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="ForecastDisplay.coproj" tooltip="C:\Users\Dominik\Documents\GitHub\STForecastDisplay\ForecastDisplay.coproj">
+<persistable uri="file:/C:/Users/Dominik/Documents/GitHub/STForecastDisplay/ForecastDisplay.coproj"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="ForecastDisplay/main.c">
+<persistable path="/ForecastDisplay/main.c"/>
+</file>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="ForecastDisplay.coproj" tooltip="C:\Users\Dominik\Documents\GitHub\STForecastDisplay\ForecastDisplay.coproj">
+<persistable uri="file:/C:/Users/Dominik/Documents/GitHub/STForecastDisplay/ForecastDisplay.coproj"/>
 </file>
 </mruList>
 </workbench>
