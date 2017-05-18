@@ -505,18 +505,16 @@ int main(void)
 	TM_HD44780_Puts(0, 0, "Wczytywanie");
 
 	initAT();
-
 	TM_HD44780_PutCustom(0,1,5);
-		TM_HD44780_PutCustom(1,1,5);
-
+	TM_HD44780_PutCustom(1,1,5);
 	initNetwork();
 
 	cleanBuff();
 
 	TM_HD44780_PutCustom(2,1,5);
-		TM_HD44780_PutCustom(3,1,5);
-		TM_HD44780_PutCustom(4,1,5);
-		TM_HD44780_PutCustom(5,1,5);
+	TM_HD44780_PutCustom(3,1,5);
+	TM_HD44780_PutCustom(4,1,5);
+	TM_HD44780_PutCustom(5,1,5);
 
 	getHTTP(getPoznan);
 	strncpy(overviewPO, parseJson("\"weather"), 15);
@@ -525,14 +523,12 @@ int main(void)
 	strncpy(wind_kphPO, parseJson("wind_kph"), 3);
 	strncpy(pressurePO, parseJson("pressure_mb"), 5);
 
-
-
 	cleanBuff();
 
 	TM_HD44780_PutCustom(6,1,5);
-		TM_HD44780_PutCustom(7,1,5);
-		TM_HD44780_PutCustom(8,1,5);
-		TM_HD44780_PutCustom(9,1,5);
+	TM_HD44780_PutCustom(7,1,5);
+	TM_HD44780_PutCustom(8,1,5);
+	TM_HD44780_PutCustom(9,1,5);
 
 	getHTTP(getWarszawa);
 	strncpy(overviewWA, parseJson("\"weather"), 15);
@@ -540,8 +536,6 @@ int main(void)
 	strncpy(humidityWA, parseJson("relative_humidity"), 5);
 	strncpy(wind_kphWA, parseJson("wind_kph"), 3);
 	strncpy(pressureWA, parseJson("pressure_mb"), 5);
-
-
 
 	cleanBuff();
 
@@ -557,19 +551,10 @@ int main(void)
 	strncpy(wind_kphKK, parseJson("wind_kph"), 3);
 	strncpy(pressureKK, parseJson("pressure_mb"), 5);
 
-
-
 	TM_HD44780_Clear();
 	TM_HD44780_Puts(0, 0, "Ukonczone");
 	int o=0;
 	for(o;o<=15;o++) {TM_HD44780_PutCustom(o,1,5);}
-	//TM_HD44780_Puts(0, 0, "STM32F4");
-	//TM_HD44780_Puts(0, 1, "20x4 HD44780 LCD");
-	//Delayms(3000);
-	//TM_HD44780_Clear();
-	//TM_HD44780_Puts(0, 0, "Michal Gozdek");
-	//TM_HD44780_Puts(0, 1, "DominikKaczmarek");
-
 
 	while(1)
 	{

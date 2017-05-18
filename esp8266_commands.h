@@ -41,16 +41,16 @@ extern char pressureKK[5];
 	void cleanBuff();
 
 /* find OK in buffor */
-	int findOK();
+	int findOK(char *recv);
 
 /* send AT command */
-	int sendCommand(char *command);
+	int sendCommand(char *command, char *recv);
 
 /* init esp8266 */
 	void initAT();
 
 /* configure network */
-	void initNetwork();
+	int initNetwork();
 
 /* send http get request */
 	int getHTTP(char *getRequest);

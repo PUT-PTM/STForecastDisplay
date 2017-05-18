@@ -48,29 +48,40 @@ void cleanBuff()
 }
 
 /* find OK in buffor */
-int findOK()
+int findOK(char *mess)
 {
-	int i;
+	int i, temp = 0;
+	int messLenght = strlen(mess);
+	char *messStart = mess;
 	for(i = 0; i<count; i++)
 	{
-		if(buffor[i] == 'O'){
-			if(buffor[i+1] == 'K') return 1;
+		if(buffor[i] == *mess){
+			temp++;
+			mess++;
+			if(messLenght == temp){
+				return 1;
+			}
 		}
+		else{
+			temp = 0;
+			mess = messStart;
+		}
+
 	}
 	return -1;
 }
 
 /* send AT command */
-int sendCommand(char *command)
+int sendCommand(char *command, char *recv)
 {
 	cleanBuff();
 	int wait = 250;
 	SendString(command);
-	Delayms(500);
-	while(findOK() != 1){
+	Delayms(1000);
+	while(findOK(recv) != 1){
 		Delayms(wait);
-		wait += 250;
-		if(wait > 6000) return -1;
+		wait += 500;
+		if(wait > 5000) return -1;
 	}
 	return 1;
 }
@@ -83,32 +94,35 @@ void initAT()
 	Delayms(500);
 
 	// esp client+AP mode enabled
-	sendCommand("AT+CWMODE=3\r\n");
+	sendCommand("AT+CWMODE=3\r\n", "OK");
 
 	// esp reset command
-	sendCommand("AT+RST\r\n");
+	sendCommand("AT+RST\r\n", "OK");
 
 }
 
 /* configure network */
-void initNetwork()
+int initNetwork()
 {
+	// check connection
+	int flag;
+
 	// connecting esp to network
-	sendCommand("AT+CWJAP=\"networktes\",\"myesp8266\"\r\n");
+	flag = sendCommand("AT+CWJAP=\"networktes\",\"myesp8266\"\r\n", "OK");
+	if(flag != 1) return -1;
 
 	// connect to wunderground.com
-	sendCommand("AT+CIPSTART=\"TCP\",\"api.wunderground.com\",80\r\n");
+	sendCommand("AT+CIPSTART=\"TCP\",\"api.wunderground.com\",80\r\n", "OK");
 
+	return 1;
 }
 
 /* send http get request */
 int getHTTP(char *getRequest)
 {
 	/* send request */
-	SendString("AT+CIPSEND=89\r\n");
-	Delayms(3000);
-	SendString(getRequest);
-	Delayms(6000);
+	sendCommand("AT+CIPSEND=89\r\n", ">");
+	sendCommand(getRequest, "SEND OK");
 	SendString("+IPD,150:\r\n");
 	Delayms(3000);
 
