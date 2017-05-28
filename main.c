@@ -46,19 +46,6 @@ char humidityKK[4];
 char wind_kphKK[3];
 char pressureKK[5];
 
-/* test our symbol */
-uint8_t customChar[] = {
-		0x0E,
-		0x0A,
-		0x0A,
-		0x0A,
-		0x0A,
-		0x11,
-		0x11,
-		0x0E
-};
-
-
 /* read from USART */
 void USART3_IRQHandler(void)
 {
@@ -71,7 +58,6 @@ void USART3_IRQHandler(void)
 	}
 }
 
-
 void EXTI1_IRQHandler(void)
 {
          	if(EXTI_GetITStatus(EXTI_Line1) != RESET)
@@ -80,7 +66,6 @@ void EXTI1_IRQHandler(void)
          		EXTI_ClearITPendingBit(EXTI_Line1);
    	   	}
 }
-
 
 void TIM4_IRQHandler(void)
 {
@@ -232,7 +217,6 @@ void TIM4_IRQHandler(void)
 
 			}
 }
-
 
 void EXTI2_IRQHandler(void)
 {
@@ -406,10 +390,7 @@ void TIM3_IRQHandler(void)
 		 }
 }
 
-
-
 /* send to USART */
-
 void SendString(char *s)
 {
 	while(*s)
@@ -430,6 +411,7 @@ int main(void)
 	init_EXTI();
 	Init_Usart();
 	TM_HD44780_CreateChar(0, &customChar[0]);
+	int check = 1;
 
 	//wind
 	uint8_t wind[] = {
@@ -502,59 +484,72 @@ int main(void)
 	}
 
 	TM_HD44780_Clear();
-	TM_HD44780_Puts(0, 0, "Wczytywanie");
+	TM_HD44780_Puts(0, 0, "Loading");
 
-	initAT();
+	flag = initAT();
 	TM_HD44780_PutCustom(0,1,5);
 	TM_HD44780_PutCustom(1,1,5);
-	initNetwork();
 
-	cleanBuff();
+	if(check == 1)
+	{
+		check = initNetwork();
+		if(check == 1)
+		{
+			TM_HD44780_PutCustom(2,1,5);
+			TM_HD44780_PutCustom(3,1,5);
+			TM_HD44780_PutCustom(4,1,5);
+			TM_HD44780_PutCustom(5,1,5);
 
-	TM_HD44780_PutCustom(2,1,5);
-	TM_HD44780_PutCustom(3,1,5);
-	TM_HD44780_PutCustom(4,1,5);
-	TM_HD44780_PutCustom(5,1,5);
+			getHTTP(getPoznan);
+			strncpy(overviewPO, parseJson("\"weather"), 15);
+			strncpy(temperaturePO, parseJson("temp_c"), 4);
+			strncpy(humidityPO, parseJson("relative_humidity"), 5);
+			strncpy(wind_kphPO, parseJson("wind_kph"), 3);
+			strncpy(pressurePO, parseJson("pressure_mb"), 5);
 
-	getHTTP(getPoznan);
-	strncpy(overviewPO, parseJson("\"weather"), 15);
-	strncpy(temperaturePO, parseJson("temp_c"), 4);
-	strncpy(humidityPO, parseJson("relative_humidity"), 5);
-	strncpy(wind_kphPO, parseJson("wind_kph"), 3);
-	strncpy(pressurePO, parseJson("pressure_mb"), 5);
+			TM_HD44780_PutCustom(6,1,5);
+			TM_HD44780_PutCustom(7,1,5);
+			TM_HD44780_PutCustom(8,1,5);
+			TM_HD44780_PutCustom(9,1,5);
 
-	cleanBuff();
+			getHTTP(getWarszawa);
+			strncpy(overviewWA, parseJson("\"weather"), 15);
+			strncpy(temperatureWA, parseJson("temp_c"), 4);
+			strncpy(humidityWA, parseJson("relative_humidity"), 5);
+			strncpy(wind_kphWA, parseJson("wind_kph"), 3);
+			strncpy(pressureWA, parseJson("pressure_mb"), 5);
 
-	TM_HD44780_PutCustom(6,1,5);
-	TM_HD44780_PutCustom(7,1,5);
-	TM_HD44780_PutCustom(8,1,5);
-	TM_HD44780_PutCustom(9,1,5);
+			TM_HD44780_PutCustom(10,1,5);
+			TM_HD44780_PutCustom(11,1,5);
+			TM_HD44780_PutCustom(12,1,5);
+			TM_HD44780_PutCustom(13,1,5);
 
-	getHTTP(getWarszawa);
-	strncpy(overviewWA, parseJson("\"weather"), 15);
-	strncpy(temperatureWA, parseJson("temp_c"), 4);
-	strncpy(humidityWA, parseJson("relative_humidity"), 5);
-	strncpy(wind_kphWA, parseJson("wind_kph"), 3);
-	strncpy(pressureWA, parseJson("pressure_mb"), 5);
+			getHTTP(getKrakow);
+			strncpy(overviewKK, parseJson("\"weather"), 15);
+			strncpy(temperatureKK, parseJson("temp_c"), 4);
+			strncpy(humidityKK, parseJson("relative_humidity"), 5);
+			strncpy(wind_kphKK, parseJson("wind_kph"), 3);
+			strncpy(pressureKK, parseJson("pressure_mb"), 5);
 
-	cleanBuff();
+			TM_HD44780_Clear();
+			TM_HD44780_Puts(0, 0, "Complete");
+			int o=0;
+			for(o;o<=15;o++) {TM_HD44780_PutCustom(o,1,5);}
+		}
+		else
+			{
+				TM_HD44780_Clear();
+				TM_HD44780_Puts(0, 0, "Connection Error");
+				TM_HD44780_Puts(0, 1, "Restart Device");
+			}
+		}
+	else
+	{
+		TM_HD44780_Clear();
+		TM_HD44780_Puts(0, 0, "ESP Init Error");
+		TM_HD44780_Puts(0, 1, "Restart Device");
+	}
 
-	TM_HD44780_PutCustom(10,1,5);
-	TM_HD44780_PutCustom(11,1,5);
-	TM_HD44780_PutCustom(12,1,5);
-	TM_HD44780_PutCustom(13,1,5);
-
-	getHTTP(getKrakow);
-	strncpy(overviewKK, parseJson("\"weather"), 15);
-	strncpy(temperatureKK, parseJson("temp_c"), 4);
-	strncpy(humidityKK, parseJson("relative_humidity"), 5);
-	strncpy(wind_kphKK, parseJson("wind_kph"), 3);
-	strncpy(pressureKK, parseJson("pressure_mb"), 5);
-
-	TM_HD44780_Clear();
-	TM_HD44780_Puts(0, 0, "Ukonczone");
-	int o=0;
-	for(o;o<=15;o++) {TM_HD44780_PutCustom(o,1,5);}
 
 	while(1)
 	{

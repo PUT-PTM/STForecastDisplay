@@ -47,7 +47,7 @@ void cleanBuff()
 	count = 0;
 }
 
-/* find OK in buffor */
+/* find recv in buffor */
 int findOK(char *mess)
 {
 	int i, temp = 0;
@@ -87,33 +87,33 @@ int sendCommand(char *command, char *recv)
 }
 
 /* init esp8266 */
-void initAT()
+int initAT()
 {
-	// disable echo
-	SendString("ATE0\r\n");
-	Delayms(500);
+	// check init configuration
+	int flag = 1;
 
 	// esp client+AP mode enabled
-	sendCommand("AT+CWMODE=3\r\n", "OK");
+	flag = sendCommand("AT+CWMODE=3\r\n", "OK");
+	if(flag != 1) return -1;
 
 	// esp reset command
-	sendCommand("AT+RST\r\n", "OK");
-
+	flag = sendCommand("AT+RST\r\n", "OK");
+	if(flag != 1) return -1;
 }
 
 /* configure network */
 int initNetwork()
 {
 	// check connection
-	int flag;
+	int flag = 1;
 
 	// connecting esp to network
 	flag = sendCommand("AT+CWJAP=\"networktes\",\"myesp8266\"\r\n", "OK");
 	if(flag != 1) return -1;
 
 	// connect to wunderground.com
-	sendCommand("AT+CIPSTART=\"TCP\",\"api.wunderground.com\",80\r\n", "OK");
-
+	flag = sendCommand("AT+CIPSTART=\"TCP\",\"api.wunderground.com\",80\r\n", "OK");
+	if(flag != 1) return -1;
 	return 1;
 }
 

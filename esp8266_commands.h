@@ -31,26 +31,52 @@ extern char pressureKK[5];
 
 
 /* find toFind scheme and its value */
-/* input: 	array of chars
- * output: 	array of chars with value
+/* input: 	value you looking for : toFind
+ * return: 	pointer to array of chars with value
  * 		   	if failed sends NULL
  */
 	char *parseJson(char *toFind);
 
-/* clear buffer */
+/* clear buffer from buffor[0] to buffor[count] */
+/* return: 	buffor filled with ' '
+ */
 	void cleanBuff();
 
-/* find OK in buffor */
-	int findOK(char *recv);
+/* look for 'mess' segment in buffor */
+/* input:	string you looking for : mess
+ * return:	1 if find
+ * 			-1 if not
+ */
+	int findOK(char *mess);
 
-/* send AT command */
+/* send AT command to ESP8266 */
+/* input:	string you want to send : command
+ *			expected answer : recv
+ * return:	1 if send command and get expected answer
+ * 			-1 if failed
+ */
 	int sendCommand(char *command, char *recv);
 
 /* init esp8266 */
-	void initAT();
+/* sends "AT+CWMODE" > choose AP+CLIENT mode
+ * sends "AT+RST" > reset ESP8266 to apply changes
+ * return:	1 if initialization is successful
+ * 			-1 if failed
+ */
+	int initAT();
 
 /* configure network */
+/* sends "AT+CWJAP" > connect to WLAN
+ * sends "AT+CIPSTART" > open communication with api server
+ * return:	1 if operations are successful
+ * 			-1 if failed
+ */
 	int initNetwork();
 
 /* send http get request */
+/* sends HTTP get request to api server
+ * input:	get request header for particular city
+ * return:	1 if gets answer
+ * 			-1 if failed
+ */
 	int getHTTP(char *getRequest);
