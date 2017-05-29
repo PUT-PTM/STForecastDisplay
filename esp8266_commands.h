@@ -34,6 +34,18 @@ extern char humidityKK[4];
 extern char wind_kphKK[3];
 extern char pressureKK[5];
 
+extern char tempWR[4];
+extern char overviewWR[15];
+extern char humidityWR[4];
+extern char windWR[3];
+extern char pressureWR[5];
+
+extern char tempGD[4];
+extern char overviewGD[15];
+extern char humidityGD[4];
+extern char windGD[3];
+extern char pressureGD[5];
+
 
 /* find toFind scheme and its value */
 /* input: 	value you looking for : toFind

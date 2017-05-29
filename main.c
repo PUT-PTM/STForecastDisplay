@@ -590,16 +590,29 @@ int main(void)
 			TM_HD44780_PutCustom(10,1,5);
 			TM_HD44780_PutCustom(11,1,5);
 
-			getHTTP(getKrakow);
+			getHTTP(getWroclaw);
 			strncpy(overviewWR, parseJson("\"weather"), 15);
 			strncpy(tempWR, parseJson("temp_c"), 4);
 			strncpy(humidityWR, parseJson("relative_humidity"), 5);
 			strncpy(windWR, parseJson("wind_kph"), 3);
 			strncpy(pressureWR, parseJson("pressure_mb"), 5);
 
+			TM_HD44780_PutCustom(12,1,5);
+			TM_HD44780_PutCustom(13,1,5);
+			
+			getHTTP(getGdansk);
+			strncpy(overviewGD, parseJson("\"weather"), 15);
+			strncpy(tempGD, parseJson("temp_c"), 4);
+			strncpy(humidityGD, parseJson("relative_humidity"), 5);
+			strncpy(windGD, parseJson("wind_kph"), 3);
+			strncpy(pressureGD, parseJson("pressure_mb"), 5);
+			
+			TM_HD44780_PutCustom(14,1,5);
+			TM_HD44780_PutCustom(15,1,5);
+			
 			flag = sendCommand("AT+CIPCLOSE\r\n", "OK");
 
-			TM_HD44780_PutCustom(12,1,5);
+			TM_HD44780_PutCustom(16,1,5);
 
 			TM_HD44780_Clear();
 			TM_HD44780_Puts(0, 0, "Complete");
