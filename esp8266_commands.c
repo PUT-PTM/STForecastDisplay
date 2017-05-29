@@ -216,8 +216,6 @@ int refreshInfo()
 	flag = sendCommand("AT+CIPCLOSE\r\n", "OK");
 	if(flag != 1) return -1;
 
-	TM_HD44780_PutCustom(16,1,5);
-
 	TM_HD44780_Clear();
 	TM_HD44780_Puts(0, 0, "Complete");
 	int o=0;

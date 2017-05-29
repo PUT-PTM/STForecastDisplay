@@ -612,8 +612,6 @@ int main(void)
 			
 			flag = sendCommand("AT+CIPCLOSE\r\n", "OK");
 
-			TM_HD44780_PutCustom(16,1,5);
-
 			TM_HD44780_Clear();
 			TM_HD44780_Puts(0, 0, "Complete");
 			int o=0;
