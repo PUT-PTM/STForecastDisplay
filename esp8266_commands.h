@@ -6,6 +6,11 @@
 // |Vcc > 3v	|RX		> C10  |
 //	---------------------------
 
+/* http get calls */
+extern char getPoznan[94];
+extern char getWarszawa[94];
+extern char getKrakow[94];
+
 /* buffer[count] to store get output */
 extern char buffor[4096];
 extern count;
@@ -14,16 +19,16 @@ extern count;
 extern char temperaturePO[4];
 extern char overviewPO[15];
 extern char humidityPO[4];
-extern char wind_kphPO[3];
+extern char windPO[3];
 extern char pressurePO[5];
 
 extern char temperatureWA[4];
 extern char overviewWA[15];
 extern char humidityWA[4];
-extern char wind_kphWA[3];
+extern char windWA[3];
 extern char pressureWA[5];
 
-extern char temperatureKK[4];
+extern char tempKK[4];
 extern char overviewKK[15];
 extern char humidityKK[4];
 extern char wind_kphKK[3];
@@ -80,3 +85,6 @@ extern char pressureKK[5];
  * 			-1 if failed
  */
 	int getHTTP(char *getRequest);
+
+/* refresh forecast info */
+	int refreshInfo();

@@ -1,5 +1,6 @@
 #include "esp8266_commands.h"
 #include "tm_stm32f4_delay.h"
+#include "tm_stm32f4_hd44780.h"
 
 /* find toFind scheme and its value */
 char *parseJson(char *toFind)
@@ -124,9 +125,83 @@ int getHTTP(char *getRequest)
 	sendCommand("AT+CIPSEND=89\r\n", ">");
 	sendCommand(getRequest, "SEND OK");
 	SendString("+IPD,150:\r\n");
-	Delayms(3000);
+	Delayms(2000);
 
 	if(count < 3000) return -1;
 	else return 1;
 }
 
+/* refresh forecast info */
+int refreshInfo()
+{
+	int flag = 1;
+
+	/* test our symbol */
+	uint8_t customChar[] = {
+			0x0E,
+			0x0A,
+			0x0A,
+			0x0A,
+			0x0A,
+			0x11,
+			0x11,
+			0x0E
+	};
+	TM_HD44780_CreateChar(0, &customChar[0]);
+
+	TM_HD44780_Clear();
+	TM_HD44780_Puts(0, 0, "Refreshing");
+	TM_HD44780_PutCustom(0,1,5);
+	TM_HD44780_PutCustom(1,1,5);
+
+	TM_HD44780_PutCustom(2,1,5);
+	TM_HD44780_PutCustom(3,1,5);
+
+	flag = sendCommand("AT+CIPSTART=\"TCP\",\"api.wunderground.com\",80\r\n", "OK");
+	if(flag != 1) return -1;
+
+	TM_HD44780_PutCustom(4,1,5);
+	TM_HD44780_PutCustom(5,1,5);
+
+	getHTTP(getPoznan);
+	strncpy(overviewPO, parseJson("\"weather"), 15);
+	strncpy(temperaturePO, parseJson("temp_c"), 4);
+	strncpy(humidityPO, parseJson("relative_humidity"), 5);
+	strncpy(windPO, parseJson("wind_kph"), 3);
+	strncpy(pressurePO, parseJson("pressure_mb"), 5);
+
+	TM_HD44780_PutCustom(6,1,5);
+	TM_HD44780_PutCustom(7,1,5);
+	TM_HD44780_PutCustom(8,1,5);
+	TM_HD44780_PutCustom(9,1,5);
+
+	getHTTP(getWarszawa);
+	strncpy(overviewWA, parseJson("\"weather"), 15);
+	strncpy(temperatureWA, parseJson("temp_c"), 4);
+	strncpy(humidityWA, parseJson("relative_humidity"), 5);
+	strncpy(windWA, parseJson("wind_kph"), 3);
+	strncpy(pressureWA, parseJson("pressure_mb"), 5);
+
+	TM_HD44780_PutCustom(10,1,5);
+	TM_HD44780_PutCustom(11,1,5);
+	TM_HD44780_PutCustom(12,1,5);
+
+	getHTTP(getKrakow);
+	strncpy(overviewKK, parseJson("\"weather"), 15);
+	strncpy(tempKK, parseJson("temp_c"), 4);
+	strncpy(humidityKK, parseJson("relative_humidity"), 5);
+	strncpy(wind_kphKK, parseJson("wind_kph"), 3);
+	strncpy(pressureKK, parseJson("pressure_mb"), 5);
+
+	flag = sendCommand("AT+CIPCLOSE\r\n", "OK");
+	if(flag != 1) return -1;
+
+	TM_HD44780_PutCustom(13,1,5);
+
+	TM_HD44780_Clear();
+	TM_HD44780_Puts(0, 0, "Complete");
+	int o=0;
+	for(o;o<=15;o++) {TM_HD44780_PutCustom(o,1,5);}
+
+	return 1;
+}

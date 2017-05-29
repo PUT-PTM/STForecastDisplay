@@ -12,39 +12,51 @@
 
 void init_usart();
 
+/* controls buttons */
 int button1=0, button2=0;
 
 /* http get calls */
 char getPoznan[94] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPPO.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
 char getWarszawa[94] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPWA.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
 char getKrakow[94] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPKK.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
-
-/* wifi ssid & password */
-const char ssid[6] = "test";
-const char pass[9] = "myesp8266";
+char getWroclaw[94] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPWR.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
+char getGdansk[94] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPGD.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
 
 /* buffer[count] to store get output */
 char buffor[4096];
 int count = 0;
+int refresh_flag = 0;
 
 /* containers for weather info */
 char temperaturePO[4];
 char overviewPO[15];
 char humidityPO[4];
-char wind_kphPO[3];
+char windPO[3];
 char pressurePO[5];
 
 char temperatureWA[4];
 char overviewWA[15];
 char humidityWA[4];
-char wind_kphWA[3];
+char windWA[3];
 char pressureWA[5];
 
-char temperatureKK[4];
+char tempKK[4];
 char overviewKK[15];
 char humidityKK[4];
 char wind_kphKK[3];
 char pressureKK[5];
+
+char tempWR[4];
+char overviewWR[15];
+char humidityWR[4];
+char windWR[3];
+char pressureWR[5];
+
+char tempGD[4];
+char overviewGD[15];
+char humidityGD[4];
+char windGD[3];
+char pressureGD[5];
 
 /* read from USART */
 void USART3_IRQHandler(void)
@@ -62,14 +74,14 @@ void EXTI1_IRQHandler(void)
 {
          	if(EXTI_GetITStatus(EXTI_Line1) != RESET)
          	{
-         		TIM_Cmd(TIM4, ENABLE);
+         		TIM_Cmd(TIM2, ENABLE);
          		EXTI_ClearITPendingBit(EXTI_Line1);
    	   	}
 }
 
-void TIM4_IRQHandler(void)
+void TIM2_IRQHandler(void)
 {
-		 if(TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET){
+		 if(TIM_GetITStatus(TIM2, TIM_IT_Update) != RESET){
 			 if(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_1) != RESET){
 			 button1++;
 			 if(button1>2)button1=0;
@@ -104,7 +116,7 @@ void TIM4_IRQHandler(void)
 							TM_HD44780_Puts(0, 0, "Poznan");
 							TM_HD44780_PutCustom(0,1,1);
 							TM_HD44780_Puts(1, 1, "wind");
-							TM_HD44780_Puts(6, 1, wind_kphPO);
+							TM_HD44780_Puts(6, 1, windPO);
 							TM_HD44780_Puts(9, 1, "km/h");
 							break;
 						case 4:
@@ -149,7 +161,7 @@ void TIM4_IRQHandler(void)
 							TM_HD44780_Puts(0, 0, "Warszawa");
 							TM_HD44780_PutCustom(0,1,1);
 							TM_HD44780_Puts(1, 1, "wind");
-							TM_HD44780_Puts(6, 1, wind_kphWA);
+							TM_HD44780_Puts(6, 1, windWA);
 							TM_HD44780_Puts(9, 1, "km/h");
 							break;
 						case 4:
@@ -173,7 +185,7 @@ void TIM4_IRQHandler(void)
 							TM_HD44780_Puts(0, 0, "Krakow");
 							TM_HD44780_PutCustom(0,1,0);
 							TM_HD44780_Puts(1, 1, "temp");
-							TM_HD44780_Puts(6, 1, temperatureKK);
+							TM_HD44780_Puts(6, 1, tempKK);
 							TM_HD44780_PutCustom(10,1,4);
 							TM_HD44780_Puts(11, 1, "C");
 							break;
@@ -211,9 +223,9 @@ void TIM4_IRQHandler(void)
 
 							}
 			 }
-			 TIM_Cmd(TIM4, DISABLE);
-			 TIM_SetCounter(TIM4, 0);
-			 TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
+			 TIM_Cmd(TIM2, DISABLE);
+			 TIM_SetCounter(TIM2, 0);
+			 TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
 
 			}
 }
@@ -226,6 +238,8 @@ void EXTI2_IRQHandler(void)
          		EXTI_ClearITPendingBit(EXTI_Line2);
    	   	}
 }
+
+
 
 void TIM3_IRQHandler(void)
 {
@@ -258,7 +272,7 @@ void TIM3_IRQHandler(void)
 						TM_HD44780_Puts(0, 0, "Krakow");
 						TM_HD44780_PutCustom(0,1,0);
 						TM_HD44780_Puts(1, 1, "temp");
-						TM_HD44780_Puts(6, 1, temperatureKK);
+						TM_HD44780_Puts(6, 1, tempKK);
 						TM_HD44780_PutCustom(10,1,4);
 						TM_HD44780_Puts(11, 1, "C");
 						break;
@@ -327,7 +341,7 @@ void TIM3_IRQHandler(void)
 							TM_HD44780_Puts(0, 0, "Poznan");
 							TM_HD44780_PutCustom(0,1,1);
 							TM_HD44780_Puts(1, 1, "wind");
-							TM_HD44780_Puts(6, 1, wind_kphPO);
+							TM_HD44780_Puts(6, 1, windPO);
 							TM_HD44780_Puts(9, 1, "km/h");
 							break;
 						case 1:
@@ -335,7 +349,7 @@ void TIM3_IRQHandler(void)
 							TM_HD44780_Puts(0, 0, "Warszawa");
 							TM_HD44780_PutCustom(0,1,1);
 							TM_HD44780_Puts(1, 1, "wind");
-							TM_HD44780_Puts(6, 1, wind_kphWA);
+							TM_HD44780_Puts(6, 1, windWA);
 							TM_HD44780_Puts(9, 1, "km/h");
 							break;
 						case 2:
@@ -390,6 +404,38 @@ void TIM3_IRQHandler(void)
 		 }
 }
 
+void EXTI3_IRQHandler(void)
+{
+         	if(EXTI_GetITStatus(EXTI_Line3) != RESET)
+         	{
+         		TIM_Cmd(TIM4, ENABLE);
+         		EXTI_ClearITPendingBit(EXTI_Line3);
+   	   	}
+}
+
+void TIM4_IRQHandler(void)
+{
+		 if(TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET){
+			 if(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_3) != RESET){
+			 refresh_flag = 1;
+
+		 }
+		  TIM_Cmd(TIM4, DISABLE);
+		  TIM_SetCounter(TIM4, 0);
+		  TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
+		 }
+}
+
+void TIM5_IRQHandler(void)
+{
+		 if(TIM_GetITStatus(TIM5, TIM_IT_Update) != RESET){
+			  refresh_flag = 1;
+		  	  TIM_SetCounter(TIM5, 0);
+		  	  TIM_ClearITPendingBit(TIM5, TIM_IT_Update);
+		 }
+}
+
+
 /* send to USART */
 void SendString(char *s)
 {
@@ -407,11 +453,25 @@ int main(void)
 {
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
 	SystemInit();
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
 	TM_HD44780_Init(16, 2);
-	init_EXTI();
+	init_EXTI_Refresh();
 	Init_Usart();
-	TM_HD44780_CreateChar(0, &customChar[0]);
+
 	int check = 1;
+
+	/* test our symbol */
+	uint8_t customChar[] = {
+			0x0E,
+			0x0A,
+			0x0A,
+			0x0A,
+			0x0A,
+			0x11,
+			0x11,
+			0x0E
+	};
+	TM_HD44780_CreateChar(0, &customChar[0]);
 
 	//wind
 	uint8_t wind[] = {
@@ -486,7 +546,7 @@ int main(void)
 	TM_HD44780_Clear();
 	TM_HD44780_Puts(0, 0, "Loading");
 
-	flag = initAT();
+	check = initAT();
 	TM_HD44780_PutCustom(0,1,5);
 	TM_HD44780_PutCustom(1,1,5);
 
@@ -504,37 +564,48 @@ int main(void)
 			strncpy(overviewPO, parseJson("\"weather"), 15);
 			strncpy(temperaturePO, parseJson("temp_c"), 4);
 			strncpy(humidityPO, parseJson("relative_humidity"), 5);
-			strncpy(wind_kphPO, parseJson("wind_kph"), 3);
+			strncpy(windPO, parseJson("wind_kph"), 3);
 			strncpy(pressurePO, parseJson("pressure_mb"), 5);
 
 			TM_HD44780_PutCustom(6,1,5);
 			TM_HD44780_PutCustom(7,1,5);
-			TM_HD44780_PutCustom(8,1,5);
-			TM_HD44780_PutCustom(9,1,5);
 
 			getHTTP(getWarszawa);
 			strncpy(overviewWA, parseJson("\"weather"), 15);
 			strncpy(temperatureWA, parseJson("temp_c"), 4);
 			strncpy(humidityWA, parseJson("relative_humidity"), 5);
-			strncpy(wind_kphWA, parseJson("wind_kph"), 3);
 			strncpy(pressureWA, parseJson("pressure_mb"), 5);
+			strncpy(windWA, parseJson("wind_kph"), 3);
 
-			TM_HD44780_PutCustom(10,1,5);
-			TM_HD44780_PutCustom(11,1,5);
-			TM_HD44780_PutCustom(12,1,5);
-			TM_HD44780_PutCustom(13,1,5);
+			TM_HD44780_PutCustom(8,1,5);
+			TM_HD44780_PutCustom(9,1,5);
 
 			getHTTP(getKrakow);
 			strncpy(overviewKK, parseJson("\"weather"), 15);
-			strncpy(temperatureKK, parseJson("temp_c"), 4);
+			strncpy(tempKK, parseJson("temp_c"), 4);
 			strncpy(humidityKK, parseJson("relative_humidity"), 5);
 			strncpy(wind_kphKK, parseJson("wind_kph"), 3);
 			strncpy(pressureKK, parseJson("pressure_mb"), 5);
+
+			TM_HD44780_PutCustom(10,1,5);
+			TM_HD44780_PutCustom(11,1,5);
+
+			getHTTP(getKrakow);
+			strncpy(overviewWR, parseJson("\"weather"), 15);
+			strncpy(tempWR, parseJson("temp_c"), 4);
+			strncpy(humidityWR, parseJson("relative_humidity"), 5);
+			strncpy(windWR, parseJson("wind_kph"), 3);
+			strncpy(pressureWR, parseJson("pressure_mb"), 5);
+
+			flag = sendCommand("AT+CIPCLOSE\r\n", "OK");
+
+			TM_HD44780_PutCustom(12,1,5);
 
 			TM_HD44780_Clear();
 			TM_HD44780_Puts(0, 0, "Complete");
 			int o=0;
 			for(o;o<=15;o++) {TM_HD44780_PutCustom(o,1,5);}
+			//TIM_Cmd(TIM5, ENABLE);
 		}
 		else
 			{
@@ -550,10 +621,24 @@ int main(void)
 		TM_HD44780_Puts(0, 1, "Restart Device");
 	}
 
-
+	init_EXTI();
 	while(1)
 	{
-
+		if(refresh_flag == 1)
+		{
+			//TIM_Cmd(TIM5, DISABLE);
+			//TIM_SetCounter(TIM5, 0);
+			//TIM_ClearITPendingBit(TIM5, TIM_IT_Update);
+			check = refreshInfo();
+			if(check != 1)
+			{
+				TM_HD44780_Clear();
+				TM_HD44780_Puts(0, 0, "Refresh Error");
+				TM_HD44780_Puts(0, 1, "Restart Device");
+			}
+			refresh_flag = 0;
+			//TIM_Cmd(TIM5, ENABLE);
+		}
 	}
 
 }
@@ -595,13 +680,75 @@ void Init_Usart(){
 
 	USART_Cmd(USART3, ENABLE);
 }
+
+void init_EXTI_Refresh(){
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM5, ENABLE);
+
+
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
+	TIM_TimeBaseStructure.TIM_Period = 104999;
+	TIM_TimeBaseStructure.TIM_Prescaler = 99999;
+	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_TimeBaseInit(TIM5, &TIM_TimeBaseStructure);
+
+	NVIC_InitTypeDef NVIC_InitStructure;
+	NVIC_InitStructure.NVIC_IRQChannel = TIM5_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVIC_InitStructure);
+	TIM_ClearITPendingBit(TIM5, TIM_IT_Update);
+	TIM_ITConfig(TIM5, TIM_IT_Update, ENABLE);
+
+
+	/* GPIOD Periph clock enable */
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+
+	GPIO_InitTypeDef GPIO_InitStructure;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_DOWN;
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+	TIM_TimeBaseStructure.TIM_Period = 2099;
+	TIM_TimeBaseStructure.TIM_Prescaler = 9999;
+	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure);
+
+	NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVIC_InitStructure);
+	TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
+	TIM_ITConfig(TIM4, TIM_IT_Update, ENABLE);
+
+	NVIC_InitStructure.NVIC_IRQChannel = EXTI3_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVIC_InitStructure);
+
+	EXTI_InitTypeDef EXTI_InitStructure;
+	EXTI_InitStructure.EXTI_Line = EXTI_Line3;
+	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;
+	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+	EXTI_Init(&EXTI_InitStructure);
+
+	SYSCFG_EXTILineConfig(GPIOA, EXTI_PinSource3);
+
+}
+
  void init_EXTI(){
 
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
-
-
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
 
 	/* GPIOD Periph clock enable */
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
@@ -615,22 +762,21 @@ void Init_Usart(){
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 
 
-
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
 	TIM_TimeBaseStructure.TIM_Period = 2099;
 	TIM_TimeBaseStructure.TIM_Prescaler = 9999;
 	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-	TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure);
+	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
 
 	NVIC_InitTypeDef NVIC_InitStructure;
-	NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
-	TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
-	TIM_ITConfig(TIM4, TIM_IT_Update, ENABLE);
+	TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
+	TIM_ITConfig(TIM2, TIM_IT_Update, ENABLE);
 
 	NVIC_InitStructure.NVIC_IRQChannel = EXTI1_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;
@@ -648,7 +794,6 @@ void Init_Usart(){
 
 	SYSCFG_EXTILineConfig(GPIOA, EXTI_PinSource1);
 
-
 		///////////////////////////////////////////////////////////////
 
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
@@ -657,7 +802,6 @@ void Init_Usart(){
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_DOWN;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
-
 
 
 	TIM_TimeBaseStructure.TIM_Period = 2099;
@@ -679,7 +823,6 @@ void Init_Usart(){
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
-
 
 
 	EXTI_InitStructure.EXTI_Line = EXTI_Line2;
