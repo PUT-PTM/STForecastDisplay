@@ -10,10 +10,12 @@
 extern char getPoznan[94];
 extern char getWarszawa[94];
 extern char getKrakow[94];
+extern char getWroclaw[94];
+extern char getGdansk[94];
 
 /* buffer[count] to store get output */
 extern char buffor[4096];
-extern count;
+extern int count;
 
 /* containers for weather info */
 extern char temperaturePO[4];
