@@ -36,8 +36,8 @@ extern char humidityKK[4];
 extern char wind_kphKK[3];
 extern char pressureKK[5];
 
-extern char teWR[4];
-extern char overWR[15];
+extern char tempWR[4];
+extern char overviewWR[15];
 extern char humidityWR[4];
 extern char windWR[3];
 extern char pressureWR[5];

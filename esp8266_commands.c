@@ -110,7 +110,6 @@ int initNetwork()
 
 	// connecting esp to network
 	flag = sendCommand("AT+CWJAP=\"networktes\",\"myesp8266\"\r\n", "OK");
-
 	if(flag != 1) return -1;
 
 	// connect to wunderground.com
@@ -195,8 +194,8 @@ int refreshInfo()
 	TM_HD44780_PutCustom(11,1,5);
 
 	getHTTP(getWroclaw);
-	strncpy(overWR, parseJson("\"weather"), 15);
-	strncpy(teWR, parseJson("temp_c"), 4);
+	strncpy(overviewWR, parseJson("\"weather"), 15);
+	strncpy(tempWR, parseJson("temp_c"), 4);
 	strncpy(humidityWR, parseJson("relative_humidity"), 5);
 	strncpy(windWR, parseJson("wind_kph"), 3);
 	strncpy(pressureWR, parseJson("pressure_mb"), 5);
