@@ -76,13 +76,13 @@ int findOK(char *mess)
 int sendCommand(char *command, char *recv)
 {
 	cleanBuff();
-	int wait = 250;
+	int wait = 500;
 	SendString(command);
-	Delayms(1000);
+	Delayms(500);
 	while(findOK(recv) != 1){
 		Delayms(wait);
 		wait += 500;
-		if(wait > 5000) return -1;
+		if(wait > 2500) return -1;
 	}
 	return 1;
 }
@@ -113,17 +113,23 @@ int initNetwork()
 	if(flag != 1) return -1;
 
 	// connect to wunderground.com
-	flag = sendCommand("AT+CIPSTART=\"TCP\",\"api.wunderground.com\",80\r\n", "OK");
+	/*flag = sendCommand("AT+CIPSTART=\"TCP\",\"api.wunderground.com\",80\r\n", "OK");
 	if(flag != 1) return -1;
-	return 1;
+	return 1;*/
 }
 
 /* send http get request */
 int getHTTP(char *getRequest)
 {
+	int flag = 1;
+
 	/* send request */
-	sendCommand("AT+CIPSEND=89\r\n", ">");
-	sendCommand(getRequest, "SEND OK");
+	flag = sendCommand("AT+CIPSEND=89\r\n", ">");
+	if(flag != 1) return -1;
+
+	flag = sendCommand(getRequest, "SEND OK");
+	if(flag != 1) return -1;
+
 	SendString("+IPD,150:\r\n");
 	Delayms(2000);
 
@@ -135,6 +141,7 @@ int getHTTP(char *getRequest)
 int refreshInfo()
 {
 	int flag = 1;
+	char temp[4];
 
 	/* test our symbol */
 	uint8_t customChar[] = {
@@ -150,7 +157,7 @@ int refreshInfo()
 	TM_HD44780_CreateChar(0, &customChar[0]);
 
 	TM_HD44780_Clear();
-	TM_HD44780_Puts(0, 0, "Refreshing");
+	TM_HD44780_Puts(0, 0, "Loading");
 	TM_HD44780_PutCustom(0,1,5);
 	TM_HD44780_PutCustom(1,1,5);
 
@@ -163,7 +170,8 @@ int refreshInfo()
 	TM_HD44780_PutCustom(4,1,5);
 	TM_HD44780_PutCustom(5,1,5);
 
-	getHTTP(getPoznan);
+	flag = getHTTP(getPoznan);
+	if(flag != 1) return -1;
 	strncpy(overviewPO, parseJson("\"weather"), 15);
 	strncpy(temperaturePO, parseJson("temp_c"), 4);
 	strncpy(humidityPO, parseJson("relative_humidity"), 5);
@@ -173,37 +181,41 @@ int refreshInfo()
 	TM_HD44780_PutCustom(6,1,5);
 	TM_HD44780_PutCustom(7,1,5);
 
-	getHTTP(getWarszawa);
+	flag = getHTTP(getWarszawa);
+	if(flag != 1) return -1;
 	strncpy(overviewWA, parseJson("\"weather"), 15);
-	strncpy(temperatureWA, parseJson("temp_c"), 4);
 	strncpy(humidityWA, parseJson("relative_humidity"), 5);
 	strncpy(windWA, parseJson("wind_kph"), 3);
 	strncpy(pressureWA, parseJson("pressure_mb"), 5);
+	strncpy(temperWA, parseJson("temp_c"), 4);
 
 	TM_HD44780_PutCustom(8,1,5);
 	TM_HD44780_PutCustom(9,1,5);
 
-	getHTTP(getKrakow);
+	flag = getHTTP(getKrakow);
+	if(flag != 1) return -1;
 	strncpy(overviewKK, parseJson("\"weather"), 15);
-	strncpy(tempKK, parseJson("temp_c"), 4);
 	strncpy(humidityKK, parseJson("relative_humidity"), 5);
 	strncpy(wind_kphKK, parseJson("wind_kph"), 3);
-	strncpy(pressureKK, parseJson("pressure_mb"), 5);
+	strncpy(pressuKK, parseJson("pressure_mb"), 5);
+	strncpy(tempKK, parseJson("temp_c"), 4); //bugged
 	
 	TM_HD44780_PutCustom(10,1,5);
 	TM_HD44780_PutCustom(11,1,5);
 
-	getHTTP(getWroclaw);
-	strncpy(overviewWR, parseJson("\"weather"), 15);
-	strncpy(tempWR, parseJson("temp_c"), 4);
+	flag = getHTTP(getWroclaw);
+	if(flag != 1) return -1;
+	strncpy(overWR, parseJson("\"weather"), 15);
+	strncpy(teWR, parseJson("temp_c"), 4);
 	strncpy(humidityWR, parseJson("relative_humidity"), 5);
-	strncpy(windWR, parseJson("wind_kph"), 3);
+	strncpy(wiatr, parseJson("wind_kph"), 3);
 	strncpy(pressureWR, parseJson("pressure_mb"), 5);
 
 	TM_HD44780_PutCustom(12,1,5);
 	TM_HD44780_PutCustom(13,1,5);
 	
-	getHTTP(getGdansk);
+	flag = getHTTP(getGdansk);
+	if(flag != 1) return -1;
 	strncpy(overviewGD, parseJson("\"weather"), 15);
 	strncpy(tempGD, parseJson("temp_c"), 4);
 	strncpy(humidityGD, parseJson("relative_humidity"), 5);

@@ -24,7 +24,7 @@ extern char humidityPO[4];
 extern char windPO[3];
 extern char pressurePO[5];
 
-extern char temperatureWA[4];
+extern char temperWA[4];
 extern char overviewWA[15];
 extern char humidityWA[4];
 extern char windWA[3];
@@ -34,12 +34,12 @@ extern char tempKK[4];
 extern char overviewKK[15];
 extern char humidityKK[4];
 extern char wind_kphKK[3];
-extern char pressureKK[5];
+extern char pressuKK[5];
 
-extern char tempWR[4];
-extern char overviewWR[15];
+extern char teWR[4];
+extern char overWR[15];
 extern char humidityWR[4];
-extern char windWR[3];
+extern char wiatr[3];
 extern char pressureWR[5];
 
 extern char tempGD[4];
