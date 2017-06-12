@@ -17,11 +17,11 @@ void init_usart();
 int button1=0, button2=0;
 
 /* http get calls */
-char getPoznan[94] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPPO.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
-char getWarszawa[94] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPWA.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
-char getKrakow[94] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPKK.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
-char getWroclaw[94] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPWR.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
-char getGdansk[94] = "GET /api/3d8b02539ee9b6a0/conditions/q/EPGD.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
+char getPoznan[94] = "GET /api/<your api key>/conditions/q/EPPO.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
+char getWarszawa[94] = "GET /api/<your api key>/conditions/q/EPWA.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
+char getKrakow[94] = "GET /api/<your api key>/conditions/q/EPKK.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
+char getWroclaw[94] = "GET /api/<your api key>/conditions/q/EPWR.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
+char getGdansk[94] = "GET /api/<your api key>/conditions/q/EPGD.json HTTP/1.1\r\nHost: api.wunderground.com\r\n\r\n";
 
 /* buffer[count] to store get output */
 char buffor[4096];
