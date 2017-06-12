@@ -33,7 +33,7 @@ Language: C
 
 ## How to run
 
-Connections:     
+##Connections     
 * ESP8266 to STM32    
 	TX -> C11   
 	CH -> 3V    
@@ -67,10 +67,11 @@ Connections:
 	K4 -> PA2
 	K7 -> PA3
 	
-Button:
--K0 is changing displayed citi
--K3 is changing displayed individual characteristics of the weather
--K7 is refreshing data
+    To operate the device we used buttons.
+    Button:
+	-K0 is changing displayed citi
+	-K3 is changing displayed individual characteristics of the weather
+	-K7 is refreshing data
 
 ## How to compile
 
@@ -93,7 +94,6 @@ Known bugs:
 
 ## Attributions
 
-//Michał dodaj te biblioteki, z których korzystałeś z linkiem, opisem i creditsami
 Used libraries:
 -TM STM32F4 Delay Library
 -TM STM32F4 GPIO Library
