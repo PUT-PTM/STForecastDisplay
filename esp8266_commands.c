@@ -111,11 +111,6 @@ int initNetwork()
 	// connecting esp to network
 	flag = sendCommand("AT+CWJAP=\"networktes\",\"myesp8266\"\r\n", "OK");
 	if(flag != 1) return -1;
-
-	// connect to wunderground.com
-	/*flag = sendCommand("AT+CIPSTART=\"TCP\",\"api.wunderground.com\",80\r\n", "OK");
-	if(flag != 1) return -1;
-	return 1;*/
 }
 
 /* send http get request */
@@ -198,7 +193,7 @@ int refreshInfo()
 	strncpy(humidityKK, parseJson("relative_humidity"), 5);
 	strncpy(wind_kphKK, parseJson("wind_kph"), 3);
 	strncpy(pressuKK, parseJson("pressure_mb"), 5);
-	strncpy(tempKK, parseJson("temp_c"), 4); //bugged
+	strncpy(tempKK, parseJson("temp_c"), 4);
 	
 	TM_HD44780_PutCustom(10,1,5);
 	TM_HD44780_PutCustom(11,1,5);
