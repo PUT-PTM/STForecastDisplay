@@ -21,7 +21,10 @@ Error during every step is call by proper information on display.
 - 'Connection Error' is called when ESP8266 cannot link to wlan (maybe wrong ssid, password or network is off), or cannot link to api server.
 - 'Refresh Error' is called when ESP8266 cannot get information from server.
 
-//Michał napisz coś o tym jak działa twój wyświetlacz, jak się komunikuje z płytką, co wyświetla, coś o guziczkach
+Informations are shown using the HD44780 display. To comunicate with the HD44780, mikrokontroler is using functions based on char tables. 
+The STM32 is conected with 8-buttons keybord Waveshare company. Buttons allow you to change the displayed information and refresh the data. When you push one of the buttons appropriate exti handler is executed.
+The HD44780 is divided on two lines. On the top line are the cities displayed whereas on the bottom line the individual characteristics of the weather with the values.
+
 
 ## Tools
 
@@ -38,9 +41,36 @@ Connections:
 	Vcc -> 3V    
 	GND -> GND    
 	GPIO2 & GPIO0 -> NULL     
-	RX -> C10     
+	RX -> C10    
 	
-//Michał: Podłączenie wyświetlacza, opis jaki guzik za co odpowiada, jak obsługiwać urzadzenie
+* HD44780 to STM32	
+	GND -> GND	
+	VCC -> +5V	
+	V0 -> GND	
+	RS -> PB2	
+	RW -> GND	
+	E -> PB7	
+	D0 -	
+	D1 -	
+	D2 -	
+	D3 -	
+	D4 -> PC12	
+	D5 -> PC13	
+	D6 -> PB12	
+	D7 ->PB13	
+	A -> +3V3	
+	K -> GND
+	
+* Keybord to STM32
+	G -> VDD
+	K0 -> PA1
+	K4 -> PA2
+	K7 -> PA3
+	
+Button:
+-K0 is changing displayed citi
+-K3 is changing displayed individual characteristics of the weather
+-K7 is refreshing data
 
 ## How to compile
 
@@ -64,6 +94,10 @@ Known bugs:
 ## Attributions
 
 //Michał dodaj te biblioteki, z których korzystałeś z linkiem, opisem i creditsami
+Used libraries:
+-TM STM32F4 Delay Library
+-TM STM32F4 GPIO Library
+from https://stm32f4-discovery.net/2014/06/library-16-interfacing-hd44780-lcd-controller-with-stm32f4/
 
 Used API: Weather Underground - Weather API    
 https://www.wunderground.com/api    
