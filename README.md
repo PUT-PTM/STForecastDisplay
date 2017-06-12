@@ -21,7 +21,7 @@ Error during every step is call by proper information on display.
 - 'Connection Error' is called when ESP8266 cannot link to wlan (maybe wrong ssid, password or network is off), or cannot link to api server.
 - 'Refresh Error' is called when ESP8266 cannot get information from server.
 
-Informations are shown using the HD44780 display. To comunicate with the HD44780, mikrokontroler is using functions based on char tables. The STM32 is conected with 8-buttons keybord Waveshare company. Buttons allow you to change the displayed information and refresh the data. When you push one of the buttons appropriate exti handler is executed.
+Informations are shown using the HD44780 display. To comunicate with the HD44780, microcontroler is using functions based on char tables. The STM32 is conected with 8-buttons keybord Waveshare company. Buttons allow you to change the displayed information and refresh the data. When you push one of the buttons appropriate exti handler is executed.
 The HD44780 is divided on two lines. On the top line are the cities displayed whereas on the bottom line the individual characteristics of the weather with the values.
 
 
