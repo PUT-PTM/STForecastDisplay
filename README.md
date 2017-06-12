@@ -32,7 +32,7 @@ Language: C
 
 ## How to run
 
-##Connections     
+#Connections     
 * ESP8266 to STM32    
 	TX -> C11   
 	CH -> 3V    
@@ -43,10 +43,10 @@ Language: C
 	RX -> C10    
 	
 * HD44780 to STM32    	
-	GND -> GND    	
-	VCC -> +5V    	
-	V0 -> GND    	
-	RS -> PB2    	
+	GND -> GND        	
+	VCC -> +5V        	
+	V0 -> GND        	
+	RS -> PB2        	
 	RW -> GND    	
 	E -> PB7    	
 	D0 -    	
@@ -68,9 +68,9 @@ Language: C
 	
     To operate the device we used buttons.    
     Button:    
-	-K0 is changing displayed citi    
-	-K3 is changing displayed individual characteristics of the weather    
-	-K7 is refreshing data    
+	- 'K0 is changing displayed citi    
+	- 'K3 is changing displayed individual characteristics of the weather    
+	- 'K7 is refreshing data    
 
 ## How to compile
 
