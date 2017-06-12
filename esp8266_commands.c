@@ -109,7 +109,7 @@ int initNetwork()
 	int flag = 1;
 
 	// connecting esp to network
-	flag = sendCommand("AT+CWJAP=\"networktes\",\"myesp8266\"\r\n", "OK");
+	flag = sendCommand("AT+CWJAP=\"<your network ssid>\",\"<your network password>\"\r\n", "OK");
 	if(flag != 1) return -1;
 }
 
