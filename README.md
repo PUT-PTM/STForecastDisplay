@@ -42,7 +42,7 @@ Language: C
 	GPIO2 & GPIO0 -> NULL     
 	RX -> C10    
 	
-* HD44780 to STM32    	
+* HD44780 to STM32    
 	GND -> GND        	
 	VCC -> +5V        	
 	V0 -> GND        	
@@ -66,11 +66,11 @@ Language: C
 	K4 -> PA2    
 	K7 -> PA3    
 	
-    To operate the device we used buttons.    
-    Button:    
-	- 'K0 is changing displayed citi    
-	- 'K3 is changing displayed individual characteristics of the weather    
-	- 'K7 is refreshing data    
+To operate the device we used buttons.    
+Button:    
+- 'K0 is changing displayed citi    
+- 'K3 is changing displayed individual characteristics of the weather    
+- 'K7 is refreshing data    
 
 ## How to compile
 
@@ -94,9 +94,9 @@ Known bugs:
 ## Attributions
 
 Used libraries:  
--TM STM32F4 HD44780 Library    
--TM STM32F4 Delay Library    
--TM STM32F4 GPIO Library    
+- TM STM32F4 HD44780 Library    
+- TM STM32F4 Delay Library    
+- TM STM32F4 GPIO Library    
 from https://stm32f4-discovery.net/2014/06/library-16-interfacing-hd44780-lcd-controller-with-stm32f4/    
 Credits to: tilz0R
 
