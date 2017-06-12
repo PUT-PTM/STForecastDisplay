@@ -68,7 +68,7 @@ Language: C
 	
 To operate the device we used buttons.    
 Button:    
-- K0 is changing displayed citi    
+- K0 is changing displayed city    
 - K3 is changing displayed individual characteristics of the weather    
 - K7 is refreshing data    
 
