@@ -14,7 +14,7 @@ STM32F4 work can be divided into 5 parts:
 - Link to WLAN and open communication with API .
 - Parse information from buffor and display them.
 - Handle interrupt from buttons.
-- Refresh information every 10 minutes.
+- Refresh information every 2 minutes.
 
 Error during every step is call by proper information on display.
 - 'ESP Init Error' is called when ESP8266 is not connected properly.
