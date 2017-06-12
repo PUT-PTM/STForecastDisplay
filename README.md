@@ -43,21 +43,21 @@ Language: C
 	RX -> C10    
 	
 * HD44780 to STM32    
-	GND -> GND        	
-	VCC -> +5V        	
-	V0 -> GND        	
-	RS -> PB2        	
-	RW -> GND    	
-	E -> PB7    	
-	D0 -    	
-	D1 -    	
-	D2 -    	
-	D3 -    	
-	D4 -> PC12    	
-	D5 -> PC13    	
-	D6 -> PB12    	
-	D7 -> PB13    	
-	A -> +3V3    	
+	GND -> GND
+	VCC -> +5V
+	V0 -> GND    
+	RS -> PB2    
+	RW -> GND    
+	E -> PB7    
+	D0 -> NULL    
+	D1 -> NULL    
+	D2 -> NULL    
+	D3 -> NULL    
+	D4 -> PC12    
+	D5 -> PC13    
+	D6 -> PB12    
+	D7 -> PB13    
+	A -> +3V3    
 	K -> GND    
 	
 * Keybord to STM32    
@@ -68,9 +68,9 @@ Language: C
 	
 To operate the device we used buttons.    
 Button:    
-- 'K0 is changing displayed citi    
-- 'K3 is changing displayed individual characteristics of the weather    
-- 'K7 is refreshing data    
+- K0 is changing displayed citi    
+- K3 is changing displayed individual characteristics of the weather    
+- K7 is refreshing data    
 
 ## How to compile
 
