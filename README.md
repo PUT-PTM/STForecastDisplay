@@ -62,7 +62,7 @@ Language: C
 	K -> GND
 	
 * Keybord to STM32
-	G -> VDD
+	G -> VDD    
 	K0 -> PA1
 	K4 -> PA2
 	K7 -> PA3
