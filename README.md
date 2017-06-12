@@ -43,8 +43,8 @@ Language: C
 	RX -> C10    
 	
 * HD44780 to STM32    
-	GND -> GND
-	VCC -> +5V
+	GND -> GND    
+	VCC -> +5V    
 	V0 -> GND    
 	RS -> PB2    
 	RW -> GND    
